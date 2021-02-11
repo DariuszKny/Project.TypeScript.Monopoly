@@ -1,6 +1,7 @@
 export class Player {
 
-    private position: number;
+    private currentPosition: number;
+    private previousPosition: number;
     private name: string;
     private money: number;
     private cards!: string[];
@@ -8,19 +9,28 @@ export class Player {
     private areDiceRolled: boolean;
 
     public constructor(name: string){
-        this.position = 1;
+        this.currentPosition = 1;
+        this.previousPosition = -1;
         this.name = name;
         this.money = 1500;
         this.double = 0;
         this.areDiceRolled = false;
     } 
     
-    public get playerPosition() : number {
-        return this.position;
+    public get playerCurrentPosition() : number {
+        return this.currentPosition;
+    }
+
+    public set playerCurrentPosition(position : number) {
+        this.currentPosition = position;
+    }
+
+    public get playerPreviousPosition() : number {
+      return this.previousPosition;
     }
 
     public set playerPosition(position : number) {
-        this.position = position;
+        this.previousPosition = position;
     }
 
     public get playerName() : string {
