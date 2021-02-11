@@ -10,7 +10,6 @@ export class Player {
         this.name = name;
         this.money = 1500;
     } 
-
     
     public get playerPosition() : number {
         return this.position;
@@ -47,5 +46,4 @@ export class Player {
         this.cards = [...cards];
     }
     
-
 }
