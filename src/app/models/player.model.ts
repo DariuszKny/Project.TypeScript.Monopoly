@@ -29,7 +29,7 @@ export class Player {
       return this.previousPosition;
     }
 
-    public set playerPosition(position : number) {
+    public set playerPreviousPosition(position : number) {
         this.previousPosition = position;
     }
 
