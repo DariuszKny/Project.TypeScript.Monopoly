@@ -1,5 +1,6 @@
 import { Player } from "../models/player.model";
 import { throwDice } from "../models/dice.model"
+import { SALARY_FOR_PASSIG_GO } from "../models/prices"
 
 export const movePlayer = (player: Player) => {
   const [, , sumOfThrownDices] = throwDice(player);
@@ -8,7 +9,7 @@ export const movePlayer = (player: Player) => {
     player.playerCurrentPosition = (player.playerCurrentPosition + sumOfThrownDices) % 40;
 
     if (playerPassedGO(player)) {
-      //give 200 to player
+      player.takeMoney(SALARY_FOR_PASSIG_GO); 
     }
   }
 }
