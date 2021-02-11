@@ -5,6 +5,7 @@ export class Player {
     private name: string;
     private money: number;
     private cards!: string[];
+    private isJailed: boolean;
     private double: number;
     private areDiceRolled: boolean;
 
@@ -13,6 +14,7 @@ export class Player {
         this.previousPosition = -1;
         this.name = name;
         this.money = 1500;
+        this.isJailed = false;
         this.double = 0;
         this.areDiceRolled = false;
     } 
@@ -57,6 +59,14 @@ export class Player {
         this.cards = [...cards];
     }
     
+    public get playerIsJailed() : boolean {
+        return this.isJailed;
+    }
+
+    public set playerIsJailed(isJailed : boolean) {
+        this.isJailed = isJailed;
+    }
+
     public get playerDouble() : number {
         return this.double;
     }
