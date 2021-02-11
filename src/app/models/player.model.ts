@@ -82,4 +82,13 @@ export class Player {
     public set playerAreDiceRolled(areDiceRolled : boolean) {
         this.areDiceRolled = areDiceRolled;
     }
+
+    takeMoney(amount : number) {
+        this.playerMoney = this.playerMoney + amount;
+    }
+
+    giveMoney(amount : number) {
+        if(this.playerMoney > amount) this.playerMoney = this.playerMoney - amount;
+        else console.log("You don't have enough money");
+    }
 }
