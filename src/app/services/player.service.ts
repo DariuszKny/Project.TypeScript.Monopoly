@@ -1,6 +1,6 @@
 import { Player } from "../models/player.model";
 import { throwDice } from "../models/dice.model"
-import { SALARY_FOR_PASSIG_START } from "../models/prices"
+import { SALARY_FOR_PASSIG_START } from "../constants/prices"
 
 
 export const moveWhenDicesRolled = (player: Player) => {

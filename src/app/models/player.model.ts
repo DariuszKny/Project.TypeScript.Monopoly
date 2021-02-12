@@ -1,4 +1,4 @@
-import { NUMBER_OF_FIELDS } from "./constants"
+import { NUMBER_OF_FIELDS } from "../constants/constants"
 
 export class Player {
 
