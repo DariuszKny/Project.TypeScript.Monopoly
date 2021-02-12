@@ -8,14 +8,14 @@ export const moveWhenDicesRolled = (player: Player) => {
   if (player.playerAreDiceRolled) {
     player.move(sumOfThrownDices);
 
-    if (playerPassedGO(player)) {
+    if (playerPassedStart(player)) {
       player.takeMoney(SALARY_FOR_PASSIG_START); 
     }
   }
 }
 
-
-const playerPassedGO = (player: Player): boolean => {
+//suggestion: move this funtion to baseCard service (its connected with start_card(id=0))
+const playerPassedStart = (player: Player): boolean => {
   if (player.playerIsJailed) return false;
   return player.playerPreviousPosition > player.playerCurrentPosition;
 }
