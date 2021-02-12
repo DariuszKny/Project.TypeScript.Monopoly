@@ -3,7 +3,7 @@ export class Player {
     private position: number;
     private name: string;
     private money: number;
-    private cards!: string[];
+    private cards!: number[];
     private double: number;
     private areDiceRolled: boolean;
 
@@ -39,11 +39,11 @@ export class Player {
         this.money = money;
     }
         
-    public get playerCards() : string[] {
+    public get playerCards() : number[] {
         return this.cards;
     }
     
-    public set playerCards(cards : string[]) {
+    public set playerCards(cards : number[]) {
         this.cards = [...cards];
     }
     
