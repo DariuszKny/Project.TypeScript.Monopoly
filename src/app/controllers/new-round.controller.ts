@@ -7,5 +7,7 @@ export function newRound(players: Player[], currentPlayer: number) : number {
     }
     else currentPlayer++;
 
+    players[currentPlayer].playerDouble = 0;
+
     return currentPlayer;
 }

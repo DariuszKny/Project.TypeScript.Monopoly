@@ -39,5 +39,4 @@ export function movePlayer(result: number, currentPlayer: Player, whichPlayer: n
     newPawn.setAttribute('id', color);
     nextField.appendChild(newPawn);
     currentPlayer.playerCurrentPosition = pos;
-    console.log(pawn, whichPlayer, color, "\n");
 }
