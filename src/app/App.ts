@@ -1,6 +1,7 @@
 import { doubleCheck } from "./controllers/double-check.controller";
 import { throwDice } from "./models/dice.model";
 import { Player } from "./models/player.model";
+import { showThrowResults } from "./services/info-board.service";
 
 class App {
     _init() {
@@ -9,7 +10,7 @@ class App {
         const playBtn = document.querySelector(".btn-main")!;
         const landingPage = document.querySelector<HTMLElement>(".landingPage")!;
         const gameContainer = document.querySelector(".game-container")!;
-        const throwButton = document.querySelector<HTMLElement>("#throwDice")!;
+        const roll = document.querySelector<HTMLElement>("#roll")!;
         const result = document.querySelector("#result");
 
         let currentPlayer;
@@ -19,22 +20,22 @@ class App {
         })
 
         var player1 = new Player("Adam", true); // temporary, TODO players array and current player variable
-        throwButton.addEventListener('click', () => {
+        roll.addEventListener('click', () => {
             
             let dice = throwDice(player1);
             doubleCheck(dice, player1);
-            // showResults() TODO write dice results to input #result
+            showThrowResults(dice, player1);
 
-            if (player1.playerDouble == 3) {
-                    player1.playerCurrentPosition = 11;
-                    // movePlayer(currentPlayer); TODO
-                    // newRound(); TODO
-            }
+            // if (player1.playerDouble == 3) {
+            //         player1.playerCurrentPosition = 11;
+            //         // movePlayer(currentPlayer); TODO
+            //         // newRound(); TODO
+            // }
 
-            if (player1.playerDouble > 0) {
-                // movePlayer(dice); TODO
-                // buyCard(currentPlayer.playerPosition);   TODO
-            }
+            // if (player1.playerDouble > 0) {
+            //     // movePlayer(dice); TODO
+            //     // buyCard(currentPlayer.playerPosition);   TODO
+            // }
 
             // movePlayer(dice); TODO
             // buyCard(currentPlayer.playerPosition);   TODO
