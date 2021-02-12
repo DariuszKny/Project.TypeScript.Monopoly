@@ -1,4 +1,3 @@
-import App from "../App";
 import { Player } from "../models/player.model";
 
 const images = require("../../../images/dice/*.png");
