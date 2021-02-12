@@ -18,7 +18,7 @@ class App {
             landingPage.style.display = "none";
         })
 
-        var player1 = new Player("Adam"); // temporary, TODO players array and current player variable
+        var player1 = new Player("Adam", true); // temporary, TODO players array and current player variable
         throwButton.addEventListener('click', () => {
             
             let dice = throwDice(player1);

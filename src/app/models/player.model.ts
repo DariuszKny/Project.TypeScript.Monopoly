@@ -5,16 +5,18 @@ export class Player {
     private currentPosition: number;
     private previousPosition: number;
     private name: string;
+    readonly goodChampion: boolean;
     private money: number;
     private cards!: number[];
     private isJailed: boolean;
     private double: number;
     private areDiceRolled: boolean;
 
-    public constructor(name: string){
+    public constructor(name: string, goodChampion: boolean){
         this.currentPosition = 0;
         this.previousPosition = -1;
         this.name = name;
+        this.goodChampion = goodChampion;
         this.money = 1500;
         this.isJailed = false;
         this.double = 0;
