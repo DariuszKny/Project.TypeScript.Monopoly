@@ -91,4 +91,9 @@ export class Player {
         if(this.playerMoney > amount) this.playerMoney = this.playerMoney - amount;
         else console.log("You don't have enough money");
     }
+
+    move(numberOfFields: number) {
+      this.previousPosition = this.currentPosition;
+      this.currentPosition = (this.currentPosition + numberOfFields) % 40;
+    }
 }
