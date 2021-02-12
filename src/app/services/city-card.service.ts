@@ -15,7 +15,7 @@ export const payRent = (currentPlayer: Player, players: Player[], city: CityCard
 }
 
 export const buyHouse = (player: Player, city: CityCard) => {
-  if(playerOwnsProperty(player, city) && city.numberOfHouses < 4){
+  if(playerOwnsProperty(player, city) && city.numberOfHouses < 5){   
     player.takeMoney(city.priceOfHouses);
     city.numberOfHouses++;
   }

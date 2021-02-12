@@ -3,7 +3,7 @@ import { Province } from "../constants/provinces"
 
 export class CityCard extends ObtainableCard {
   readonly priceOfHouses!: number;
-  private _numberOfHouses: number = 0;
+  private _numberOfHouses: number = 0;    //if numberOfHouses===5, it means its a hotel
 
   constructor(
     readonly id: number,
