@@ -1,3 +1,5 @@
+import { NUMBER_OF_FIELDS } from "./constants"
+
 export class Player {
 
     private currentPosition: number;
@@ -94,6 +96,6 @@ export class Player {
 
     move(numberOfFields: number) {
       this.previousPosition = this.currentPosition;
-      this.currentPosition = (this.currentPosition + numberOfFields) % 40;
+      this.currentPosition = (this.currentPosition + numberOfFields) % NUMBER_OF_FIELDS;
     }
 }
