@@ -1,3 +1,5 @@
+import { NUMBER_OF_FIELDS } from "../constants/constants"
+
 export class Player {
 
     private currentPosition: number;
@@ -10,7 +12,7 @@ export class Player {
     private areDiceRolled: boolean;
 
     public constructor(name: string){
-        this.currentPosition = 1;
+        this.currentPosition = 0;
         this.previousPosition = -1;
         this.name = name;
         this.money = 1500;
@@ -90,5 +92,10 @@ export class Player {
     giveMoney(amount : number) {
         if(this.playerMoney > amount) this.playerMoney = this.playerMoney - amount;
         else console.log("You don't have enough money");
+    }
+
+    move(numberOfFields: number) {
+      this.previousPosition = this.currentPosition;
+      this.currentPosition = (this.currentPosition + numberOfFields) % NUMBER_OF_FIELDS;
     }
 }

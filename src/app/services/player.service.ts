@@ -1,21 +1,22 @@
 import { Player } from "../models/player.model";
 import { throwDice } from "../models/dice.model"
-import { SALARY_FOR_PASSIG_GO } from "../models/prices"
+import { SALARY_FOR_PASSIG_START } from "../constants/prices"
 
-export const movePlayer = (player: Player) => {
-  const [, , sumOfThrownDices] = throwDice(player);
+
+export const moveWhenDicesRolled = (player: Player, dice: number[]) => {
   if (player.playerAreDiceRolled) {
-    player.playerPreviousPosition = player.playerCurrentPosition;
-    player.playerCurrentPosition = (player.playerCurrentPosition + sumOfThrownDices) % 40;
+    const [, , sumOfThrownDices] = dice;
+    player.move(sumOfThrownDices);
+    player.playerAreDiceRolled = false;
 
-    if (playerPassedGO(player)) {
-      player.takeMoney(SALARY_FOR_PASSIG_GO); 
-    }
+    if (playerPassedStart(player)) {
+      player.takeMoney(SALARY_FOR_PASSIG_START); 
+    } 
   }
 }
 
-
-const playerPassedGO = (player: Player): boolean => {
+//suggestion: move this funtion to baseCard service (its connected with start_card(id=0))
+const playerPassedStart = (player: Player): boolean => {
   if (player.playerIsJailed) return false;
   return player.playerPreviousPosition > player.playerCurrentPosition;
 }

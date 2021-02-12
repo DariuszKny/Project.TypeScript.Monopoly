@@ -1,4 +1,4 @@
-export const SALARY_FOR_PASSIG_GO = 200;
+export const SALARY_FOR_PASSIG_START = 200;
 export const BAG_END_RENT = [10, 40, 80, 140, 170, 200];
 export const FARMERS_MAGGOT_RENT = [12, 48, 96, 168, 204, 240];
 export const BREE_RENT = [15, 60, 120, 210, 255, 300];
