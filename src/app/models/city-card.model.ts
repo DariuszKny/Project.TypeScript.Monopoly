@@ -2,7 +2,8 @@ import { ObtainableCard } from "./abstract-card.model";
 import { Province } from "./provinces"
 
 export class CityCard extends ObtainableCard {
-  readonly priceOfHouses: number = 0;
+  readonly priceOfHouses!: number;
+  private _numberOfHouses: number = 0;
 
   constructor(
     readonly id: number,
@@ -28,5 +29,13 @@ export class CityCard extends ObtainableCard {
       case 8: this.priceOfHouses = 200;
               break;  
     }
+  }
+
+  get numberOfHouses(): number {
+    return this._numberOfHouses;
+  }
+
+  set numberOfHouses(numberOfHouses: number) {
+    this._numberOfHouses = numberOfHouses;
   }
 }
