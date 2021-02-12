@@ -1,26 +1,38 @@
 export class Player {
 
-    private position: number;
+    private currentPosition: number;
+    private previousPosition: number;
     private name: string;
     private money: number;
     private cards!: number[];
+    private isJailed: boolean;
     private double: number;
     private areDiceRolled: boolean;
 
     public constructor(name: string){
-        this.position = 1;
+        this.currentPosition = 1;
+        this.previousPosition = -1;
         this.name = name;
         this.money = 1500;
+        this.isJailed = false;
         this.double = 0;
         this.areDiceRolled = false;
     } 
     
-    public get playerPosition() : number {
-        return this.position;
+    public get playerCurrentPosition() : number {
+        return this.currentPosition;
     }
 
-    public set playerPosition(position : number) {
-        this.position = position;
+    public set playerCurrentPosition(position : number) {
+        this.currentPosition = position;
+    }
+
+    public get playerPreviousPosition() : number {
+      return this.previousPosition;
+    }
+
+    public set playerPreviousPosition(position : number) {
+        this.previousPosition = position;
     }
 
     public get playerName() : string {
@@ -47,6 +59,14 @@ export class Player {
         this.cards = [...cards];
     }
     
+    public get playerIsJailed() : boolean {
+        return this.isJailed;
+    }
+
+    public set playerIsJailed(isJailed : boolean) {
+        this.isJailed = isJailed;
+    }
+
     public get playerDouble() : number {
         return this.double;
     }
@@ -61,5 +81,14 @@ export class Player {
 
     public set playerAreDiceRolled(areDiceRolled : boolean) {
         this.areDiceRolled = areDiceRolled;
+    }
+
+    takeMoney(amount : number) {
+        this.playerMoney = this.playerMoney + amount;
+    }
+
+    giveMoney(amount : number) {
+        if(this.playerMoney > amount) this.playerMoney = this.playerMoney - amount;
+        else console.log("You don't have enough money");
     }
 }
