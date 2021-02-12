@@ -10,7 +10,7 @@ export class Player {
     private areDiceRolled: boolean;
 
     public constructor(name: string){
-        this.currentPosition = 1;
+        this.currentPosition = 0;
         this.previousPosition = -1;
         this.name = name;
         this.money = 1500;
