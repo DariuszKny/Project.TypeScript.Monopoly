@@ -1,0 +1,10 @@
+export enum Province {
+  SHIRE = 1,
+  LONE_LANDS,
+  ERIADOR,
+  HITHAEGLIR,
+  ROHAN,
+  CALENARDHON, 
+  GONDOR,
+  MORDOR
+}
