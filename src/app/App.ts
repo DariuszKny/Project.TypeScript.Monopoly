@@ -26,7 +26,7 @@ class App {
             // showResults() TODO write dice results to input #result
 
             if (player1.playerDouble == 3) {
-                    player1.playerPosition = 11;
+                    player1.playerCurrentPosition = 11;
                     // movePlayer(currentPlayer); TODO
                     // newRound(); TODO
             }
