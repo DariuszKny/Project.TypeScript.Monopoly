@@ -4,10 +4,13 @@ import { newRound } from "./controllers/new-round.controller";
 import { throwDice } from "./models/dice.model";
 import { Player } from "./models/player.model";
 import { showThrowResults } from "./services/info-board.service";
+import {GameController} from "./controllers/game.controller"
 
 class App {
     _init() {
         console.log('start');
+        const gameController = GameController;
+
 
         const playBtn = document.querySelector(".btn-main")!;
         const landingPage = document.querySelector<HTMLElement>(".landingPage")!;
