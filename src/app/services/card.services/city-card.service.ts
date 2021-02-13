@@ -3,7 +3,7 @@ import { CityCard } from "../../models/card.models/city-card.model";
 import { playerOwnsCard, findCardOwner, numberOfOwnedCards, payMoneyToCardOwner } from "./shared-card.service";
 import * as provinces from "../../constants/provinces";
 
-export const payRent = (player: Player, players: Player[], city: CityCard,) => {
+export const payRent = (player: Player, players: Player[], city: CityCard): void => {
   if(city.isObtainable) return;                                //if city wasnt bought by anyone
   if(playerOwnsCard(player, city.id)) return;  
   const rent = city.rent[city.numberOfHouses];
@@ -11,7 +11,7 @@ export const payRent = (player: Player, players: Player[], city: CityCard,) => {
   payMoneyToCardOwner(player, cityOwner, rent);
 }
 
-export const buyHouse = (player: Player, city: CityCard) => {
+export const buyHouse = (player: Player, city: CityCard): void => {
   if(playerOwnsAllCitiesInProvince(player, city) && city.numberOfHouses < 5){   
     player.takeMoney(city.priceOfHouses);
     city.numberOfHouses++;

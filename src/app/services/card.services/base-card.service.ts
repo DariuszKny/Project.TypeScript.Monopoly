@@ -6,7 +6,7 @@ export const playerPassedStart = (player: Player): boolean => {
   return player.playerPreviousPosition > player.playerCurrentPosition;
 }
 
-export const goToJail = (player: Player) => {
+export const goToJail = (player: Player): void => {
   player.playerIsJailed = true;
   player.playerCurrentPosition = JAIL_FIELD;
 }
