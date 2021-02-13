@@ -14,7 +14,7 @@ class App {
 
         const playBtn = document.querySelector(".btn-main")!;
         const landingPage = document.querySelector<HTMLElement>(".landingPage")!;
-        const gameContainer = document.querySelector(".game-container")!;
+        const gameContainer = document.querySelector<HTMLElement>(".game-container")!;
         const roll = document.querySelector<HTMLElement>("#roll")!;
         const fields = document.querySelectorAll<HTMLElement>(".field");
 
@@ -23,6 +23,7 @@ class App {
 
         playBtn.addEventListener('click', () => {
             landingPage.style.display = "none";
+            gameContainer.style.display = "flex";
         })
 
         var player1 = new Player("Adam", true); // temporary, TODO players array and current player variable
