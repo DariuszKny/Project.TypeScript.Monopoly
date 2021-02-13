@@ -1,4 +1,5 @@
 import { NUMBER_OF_FIELDS } from "../constants/game-constants"
+import { playerPassedStart } from "../services/card.services/base-card.service";
 
 export class Player {
 
@@ -11,6 +12,7 @@ export class Player {
     private isJailed: boolean;
     private double: number;
     private areDiceRolled: boolean;
+    private blockedTurns: number;
 
     public constructor(name: string, goodChampion: boolean){
         this.currentPosition = 0;
@@ -21,6 +23,7 @@ export class Player {
         this.isJailed = false;
         this.double = 0;
         this.areDiceRolled = false;
+        this.blockedTurns = 0;
     } 
     
     public get playerCurrentPosition() : number {
@@ -87,6 +90,14 @@ export class Player {
         this.areDiceRolled = areDiceRolled;
     }
 
+    public get playerBlockedTurns() : number {
+        return this.blockedTurns;
+    }
+
+    public set playerBlockedTurns(blockedTurns : number) {
+        this.blockedTurns = blockedTurns;
+    }
+
     takeMoney(amount : number) {
         this.playerMoney = this.playerMoney + amount;
     }
@@ -97,7 +108,13 @@ export class Player {
     }
 
     move(numberOfFields: number) {
+      if(this.blockedTurns > 0) {
+        console.log(`You are in Jail, you have to wait ${this.blockedTurns} turns`);
+        this.blockedTurns--;
+        return;
+      }
       this.previousPosition = this.currentPosition;
       this.currentPosition = (this.currentPosition + numberOfFields) % NUMBER_OF_FIELDS;
+      playerPassedStart(this);
     }
 }
