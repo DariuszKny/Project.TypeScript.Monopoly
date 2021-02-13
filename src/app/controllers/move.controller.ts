@@ -30,13 +30,20 @@ export function movePlayer(result: number, currentPlayer: Player, whichPlayer: n
     }
 
     const images = require('../../../images/pawns/*.png');
-    const nextField = document.querySelector(`#f${pos}`)!;
+    const nextField = document.querySelector(`#f${pos} > .pawns-container `)!;
     const pawn = document.querySelector<HTMLElement>(`#${color}`)!;
     const newPawn = document.createElement('img');
 
     pawn.parentNode!.removeChild(pawn);
     newPawn.src = images[color];
     newPawn.setAttribute('id', color);
-    nextField.appendChild(newPawn);
+    if(nextField) {
+        nextField.appendChild(newPawn)
+    } else {
+        console.log("NOT FOUND on field "+ pos)
+
+    }
+
+    //nextField.appendChild(newPawn);
     currentPlayer.playerCurrentPosition = pos;
 }
