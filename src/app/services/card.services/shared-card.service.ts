@@ -1,8 +1,10 @@
 import { Player } from "../../models/player.model";
+import { priceMultiplier } from "./hobbit-card.service";
 
 export const payMoneyToCardOwner = (player: Player, owner: Player, money: number): void  => {
-  player.giveMoney(money);
-  owner.takeMoney(money);
+  const moneyToPay = priceMultiplier(player)*money; 
+  player.giveMoney(moneyToPay);
+  owner.takeMoney(moneyToPay);
 }
 
 export const findCardOwner = (players: Player[], cardId: number): Player => {
