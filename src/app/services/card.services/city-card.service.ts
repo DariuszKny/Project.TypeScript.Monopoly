@@ -1,17 +1,14 @@
 import { Player } from "../../models/player.model";
 import { CityCard } from "../../models/card.models/city-card.model";
+import { playerOwnsCard, findCardOwner, numberOfOwnedCards, payMoneyToCardOwner } from "./shared-card.service";
 import * as provinces from "../../constants/provinces";
 
-export const payRent = (currentPlayer: Player, players: Player[], city: CityCard,) => {
+export const payRent = (player: Player, players: Player[], city: CityCard,) => {
   if(city.isObtainable) return;                                //if city wasnt bought by anyone
-  if(playerOwnsCity(currentPlayer, city.id)) return;  
-  let propertyOwner!: Player ;           
+  if(playerOwnsCard(player, city.id)) return;  
   const rent = city.rent[city.numberOfHouses];
-  players.forEach((player) => {
-  if(playerOwnsCity(player, city.id)) propertyOwner = player;
-  });
-  currentPlayer.giveMoney(rent);
-  propertyOwner.takeMoney(rent);
+  const cityOwner = findCardOwner(players, city.id)
+  payMoneyToCardOwner(player, cityOwner, rent);
 }
 
 export const buyHouse = (player: Player, city: CityCard) => {
@@ -24,16 +21,11 @@ export const buyHouse = (player: Player, city: CityCard) => {
 const playerOwnsAllCitiesInProvince = (player: Player, city: CityCard): boolean => {
   const provinceCities = getProvinceCities(city);
   const numberOfProvinceCities = provinceCities.length;
-  let numberOfOwnedCities: number = 0;
-  for (let id of provinceCities){
-    if(playerOwnsCity(player, id)) numberOfOwnedCities++;
-  }
+  const numberOfOwnedCities = numberOfOwnedCards(player, provinceCities);
   return numberOfProvinceCities === numberOfOwnedCities;
 }
 
-const playerOwnsCity = (player: Player, cityId: number): boolean => {
-  return player.playerCards.includes(cityId)
-}
+
 
 const getProvinceCities = (city: CityCard): number[] => {
   switch(city.province){
