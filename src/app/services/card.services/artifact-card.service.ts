@@ -1,6 +1,6 @@
-import { Player } from "../models/player.model";
-import { ArtifactCard } from "../models/artifact-card.model";
-import { ARTIFACT_CARDS_IDS } from "../constants/game-constants";
+import { Player } from "../../models/player.model";
+import { ArtifactCard } from "../../models/card.models/artifact-card.model";
+import { ARTIFACT_CARDS_IDS } from "../../constants/game-constants";
 
 export const payTax = (currentPlayer: Player, players: Player[], artifact: ArtifactCard) => {
   if(artifact.isObtainable) return;

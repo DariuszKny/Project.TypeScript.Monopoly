@@ -1,5 +1,5 @@
 import { ObtainableCard } from "./abstract-card.model";
-import { Province } from "../constants/provinces"
+import { Province } from "../../constants/provinces"
 
 export class CityCard extends ObtainableCard {
   readonly priceOfHouses!: number;

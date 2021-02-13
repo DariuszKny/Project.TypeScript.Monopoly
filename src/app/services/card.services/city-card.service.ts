@@ -1,6 +1,6 @@
-import { Player } from "../models/player.model";
-import { CityCard } from "../models/city-card.model";
-import * as provinces from "../constants/provinces";
+import { Player } from "../../models/player.model";
+import { CityCard } from "../../models/card.models/city-card.model";
+import * as provinces from "../../constants/provinces";
 
 export const payRent = (currentPlayer: Player, players: Player[], city: CityCard,) => {
   if(city.isObtainable) return;                                //if city wasnt bought by anyone

@@ -1,5 +1,5 @@
-import { Player } from "../models/player.model";
-import { JAIL_FIELD } from "../constants/game-constants";
+import { Player } from "../../models/player.model";
+import { JAIL_FIELD } from "../../constants/game-constants";
 
 export const playerPassedStart = (player: Player): boolean => {
   if (player.playerIsJailed) return false;
