@@ -10,6 +10,12 @@
   background-color: #2f4353;
   background-image: linear-gradient(315deg, black 0%, black 74%);
 
+  @media (max-height: 930px) {
+    width: 1700px;
+    height: 930px;
+    overflow-x: hidden;
+  }
+
   .left-container {
     width: 20%;
     margin: 5px 5px;
@@ -79,7 +85,6 @@
 
 
     .main-board {
-      position: relative;
       grid-area: board;
       border: 1px solid black;
       background:  url("../images/middle.jpg") no-repeat;
@@ -124,6 +129,7 @@
         letter-spacing: 0.15rem;
         background-color: rgba(0,0,0,0.8);
         height: 40%;
+        max-height: 40%;
         margin-top: 10px;
         overflow-y: hidden;
         overflow-x: hidden;
