@@ -54,107 +54,227 @@
       <!--HERE WILL MAIN CONTROLLER OF THE GAME , DICE, BUTTONS ,MESSAGES-->
       <div class="main-board">
          <div class="controls">
-            <div class="dice">
-               <img id="die1" src="images/dice/DICEROLL1.png" alt="">
-               <img id="die2" src="images/dice/DICEROLL2.png" alt="">
+            <div class="controls-main">
+               <div class="dice">
+                  <img id="die1" src="images/dice/DICEROLL1.png" alt="">
+                  <img id="die2" src="images/dice/DICEROLL2.png" alt="">
+               </div>
+               <button id="roll" class="btn btn-main">ROLL!</button>
+               <button class="btn btn-main">NEXT PLAYER</button>
+               <button class="btn btn-main">BUY</button>
             </div>
-            <button id="roll" class="btn btn-main">ROLL!</button>
-            <button class="btn btn-main">NEXT PLAYER</button>
-            <button class="btn btn-main">BUY</button>
-            <div class="message-container"></div>
+            <div class="controls-additional"></div>
          </div>
+         <div class="message-container"></div>
       </div>
 
       <!--HERE ARE CARDS ON BOARD PAWNS AND CASTLES-->
       <div id="f0" data-value="0" data-buildings="0"
            class="field field-col field-row field-1">
-           <img id="BLUE" src="./images/pawns/BLUE.png">
-           <img id="GREEN" src="./images/pawns/GREEN.png">
-           <img id="YELLOW" src="./images/pawns/YELLOW.png">
-           <img id="RED" src="./images/pawns/RED.png">
+         <div class="category "></div>
+         <div class="pawns-container">
+            <img id="BLUE" src="./images/pawns/BLUE.png">
+            <img id="GREEN" src="./images/pawns/GREEN.png">
+            <img id="YELLOW" src="./images/pawns/YELLOW.png">
+            <img id="RED" src="./images/pawns/RED.png">
+         </div>
+
       </div>
       <div id="f1" data-value="0" data-buildings="0"
-           class="field field-col field-2"></div>
+           class="field field-col field-2">
+         <div class="category green"></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f2" data-value="0" data-buildings="0"
-           class="field field-col field-3"></div>
+           class="field field-col field-3">
+         <div class="category"><h4>Trap</h4></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f3" data-value="0" data-buildings="0"
-           class="field field-col field-4"></div>
+           class="field field-col field-4">
+         <div class="category"><h4>Good</h4></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f4" data-value="0" data-buildings="0"
-           class="field field-col field-5"></div>
+           class="field field-col field-5">
+         <div class="category green"></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f5" data-value="0" data-buildings="0"
-           class="field field-col field-6"></div>
+           class="field field-col field-6">
+         <div class="category"><h4>Hobbit</h4></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f6" data-value="0" data-buildings="0"
-           class="field field-col field-7"></div>
+           class="field field-col field-7">
+         <div class="category red"></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f7" data-value="0" data-buildings="0"
-           class="field field-col field-8"></div>
+           class="field field-col field-8">
+         <div class="category red"></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f8" data-value="0" data-buildings="0" 
-           class="field field-col field-9"></div>
+           class="field field-col field-9">
+         <div class="category "><h4>Artifact</h4></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f9" data-value="0" data-buildings="0" 
-           class="field field-col field-10"></div>
+           class="field field-col field-10">
+         <div class="category red"></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f10" data-value="0" data-buildings="0" 
            class="field field-col field-row field-11">
+         <div class="category "></div>
+         <div class="pawns-container"></div>
       </div>
       <div id="f11" data-value="0" data-buildings="0" 
            class="field field-row field-12">
+         <div class="category yellow"></div>
+         <div class="pawns-container"></div>
       </div>
       <div id="f12" data-value="0" data-buildings="0" 
-           class="field field-row field-13"></div>
+           class="field field-row field-13">
+         <div class="category yellow"></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f13" data-value="0" data-buildings="0" 
-           class="field field-row field-14"></div>
+           class="field field-row field-14">
+         <div class="category "><h4>Evil</h4></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f14" data-value="0" data-buildings="0" 
-           class="field field-row field-15"></div>
+           class="field field-row field-15">
+         <div class="category "><h4>Ring</h4></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f15" data-value="0" data-buildings="0" 
-           class="field field-row field-16"></div>
+           class="field field-row field-16">
+         <div class="category "><h4>Hobbit</h4></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f16" data-value="0" data-buildings="0" 
-           class="field field-row field-17"></div>
+           class="field field-row field-17">
+         <div class="category blue"></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f17" data-value="0" data-buildings="0" 
-           class="field field-row field-18"></div>
+           class="field field-row field-18">
+         <div class="category blue"></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f18" data-value="0" data-buildings="0" 
-           class="field field-row field-19"></div>
+           class="field field-row field-19">
+         <div class="category "><h4>Artifact</h4></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f19" data-value="0" data-buildings="0"
-           class="field field-row field-20"></div>
+           class="field field-row field-20">
+         <div class="category blue"></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f20" data-value="0" data-buildings="0"
            class="field field-col field-row field-21">
+         <div class="category "></div>
+         <div class="pawns-container"></div>
       </div>
       <div id="f21" data-value="0" data-buildings="0"
-           class="field field-col field-22"></div>
+           class="field field-col field-22">
+         <div class="category purple"></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f22" data-value="0" data-buildings="0"
-           class="field field-col field-23"></div>
+           class="field field-col field-23">
+         <div class="category purple"></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f23" data-value="0" data-buildings="0"
-           class="field field-col field-24"></div>
+           class="field field-col field-24">
+         <div class="category ">Good</div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f24" data-value="0" data-buildings="0"
-           class="field field-col field-25"></div>
+           class="field field-col field-25">
+         <div class="category purple"></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f25" data-value="0" data-buildings="0"
-           class="field field-col field-26"></div>
+           class="field field-col field-26">
+         <div class="category ">Hobbit</div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f26" data-value="0" data-buildings="0"
-           class="field field-col field-27"></div>
+           class="field field-col field-27">
+         <div class="category brown"></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f27" data-value="0" data-buildings="0"
-           class="field field-col field-28"></div>
+           class="field field-col field-28">
+         <div class="category brown"></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f28" data-value="0" data-buildings="0" 
-           class="field field-col field-29"></div>
+           class="field field-col field-29">
+         <div class="category "><h4>Artifact</h4></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f29" data-value="0" data-buildings="0" 
-           class="field field-col field-30"></div>
+           class="field field-col field-30">
+         <div class="category brown"></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f30" data-value="0" data-buildings="0" 
            class="field field-row field-31">
+         <div class="category "></div>
+         <div class="pawns-container"></div>
       </div>
       <div id="f31" data-value="0" data-buildings="0" 
-           class="field field-row field-32"></div>
+           class="field field-row field-32">
+         <div class="category black"></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f32" data-value="0" data-buildings="0" 
-           class="field field-row field-33"></div>
+           class="field field-row field-33">
+         <div class="category black"></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f33" data-value="0" data-buildings="0" 
-           class="field field-row field-34"></div>
+           class="field field-row field-34">
+         <div class="category "><h4>Evil</h4></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f34" data-value="0" data-buildings="0" 
-           class="field field-row field-35"></div>
+           class="field field-row field-35">
+         <div class="category black"></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f35" data-value="0" data-buildings="0" 
-           class="field field-row field-36"></div>
+           class="field field-row field-36">
+         <div class="category "><h4>Hobbit</h4></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f36" data-value="0" data-buildings="0" 
-           class="field field-row field-37"></div>
+           class="field field-row field-37">
+         <div class="category orange"></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f37" data-value="0" data-buildings="0" 
-           class="field field-row field-38"></div>
+           class="field field-row field-38">
+         <div class="category "><h4>Trap</h4></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f38" data-value="0" data-buildings="0" 
-           class="field field-row field-39"></div>
+           class="field field-row field-39">
+         <div class="category "><h4>Artifact</h4></div>
+         <div class="pawns-container"></div>
+      </div>
       <div id="f39" data-value="0" data-buildings="0" 
-           class="field field-row field-40"></div>
+           class="field field-row field-40">
+         <div class="category orange"></div>
+         <div class="pawns-container"></div>
+      </div>
    </div>
 
    <!--HERE WILL BE STATISTICS OF PLAYERS AND WHAT THEY BOUGHT-->
