@@ -1,0 +1,42 @@
+
+.left-container {
+  width: 20%;
+  margin: 5px 5px;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+
+  color: darkgoldenrod;
+
+  .timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h2 {
+      margin-top: 3px;
+      margin-right: 50px;
+      font-size: 24px;
+    }
+    img{
+      width: 20%;
+    }
+  }
+
+  .border {
+    height: 2px;
+    width: 100%;
+    border: 1px solid darkgoldenrod;
+  }
+
+  > img {
+    width: 80%;
+    margin: 7px;
+  }
+
+  .stats {
+    margin: 10px;
+    align-self: flex-start;
+  }
+}

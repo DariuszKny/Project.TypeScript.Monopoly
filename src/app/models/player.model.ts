@@ -1,20 +1,22 @@
 import { NUMBER_OF_FIELDS } from "../constants/game-constants"
 import { playerPassedStart } from "../services/card.services/base-card.service";
+import {Card} from "./card.models/abstract-card.model";
 
 export class Player {
-
+    readonly _id: number;
     private currentPosition: number;
     private previousPosition: number;
     private name: string;
     readonly goodChampion: boolean;
     private money: number;
-    private cards!: number[];
+    private cards: number[] = [];
     private isJailed: boolean;
     private double: number;
     private areDiceRolled: boolean;
     private blockedTurns: number;
 
-    public constructor(name: string, goodChampion: boolean){
+    public constructor(id: number,name: string, goodChampion: boolean){
+        this._id = id
         this.currentPosition = 0;
         this.previousPosition = -1;
         this.name = name;
@@ -24,8 +26,13 @@ export class Player {
         this.double = 0;
         this.areDiceRolled = false;
         this.blockedTurns = 0;
-    } 
-    
+    }
+
+
+    public get id(): number {
+        return this._id;
+    }
+
     public get playerCurrentPosition() : number {
         return this.currentPosition;
     }

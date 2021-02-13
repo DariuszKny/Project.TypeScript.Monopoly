@@ -26,10 +26,10 @@ class App {
             gameContainer.style.display = "flex";
         })
 
-        var player1 = new Player("Adam", true); // temporary, TODO players array and current player variable
-        var player2 = new Player("Tomek", true); // temporary, TODO players array and current player variable
-        var player3 = new Player("Wojtek", true); // temporary, TODO players array and current player variable
-        var player4 = new Player("Zbyszek", true); // temporary, TODO players array and current player variable
+        var player1 = new Player(1,"Adam", true); // temporary, TODO players array and current player variable
+        var player2 = new Player(2,"Tomek", true); // temporary, TODO players array and current player variable
+        var player3 = new Player(3,"Wojtek", true); // temporary, TODO players array and current player variable
+        var player4 = new Player(4,"Zbyszek", true); // temporary, TODO players array and current player variable
         players = [player1, player2, player3, player4];
 
         roll.addEventListener('click', () => {
