@@ -1,0 +1,68 @@
+.right-container {
+  width: 20%;
+  margin: 5px 5px;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  h2 {
+    margin-top: 15px;
+  }
+
+  color: darkgoldenrod;
+
+  .border {
+    height: 2px;
+    width: 100%;
+    border: 1px solid darkgoldenrod;
+  }
+
+  .players {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    text-align: center;
+    margin-top: 5px;
+    color: darkgoldenrod;
+
+    .player {
+      margin: 5px;
+      padding: 3px;
+      border-radius: 10px;
+      border: 2px solid darkgoldenrod;
+
+      img {
+        width: 75%;
+      }
+      p{
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      &:hover {
+        background-color: saddlebrown;
+        cursor: pointer;
+      }
+      &-active {
+        border: 4px solid wheat;
+      }
+    }
+  }
+
+  .cards-container {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-gap: 1px ;
+    align-content: center;
+    overflow: scroll;
+
+    img {
+      margin: 4px;
+      width: 90%;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
