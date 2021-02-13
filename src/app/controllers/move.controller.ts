@@ -44,6 +44,5 @@ export function movePlayer(result: number, currentPlayer: Player, whichPlayer: n
 
     }
 
-    //nextField.appendChild(newPawn);
     currentPlayer.playerCurrentPosition = pos;
 }

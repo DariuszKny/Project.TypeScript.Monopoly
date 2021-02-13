@@ -5,6 +5,7 @@ import { throwDice } from "./models/dice.model";
 import { Player } from "./models/player.model";
 import { showThrowResults } from "./services/info-board.service";
 import {GameController} from "./controllers/game.controller"
+import { addPawn } from "./services/add-pawn.service";
 
 class App {
     _init() {
@@ -16,21 +17,27 @@ class App {
         const landingPage = document.querySelector<HTMLElement>(".landingPage")!;
         const gameContainer = document.querySelector<HTMLElement>(".game-container")!;
         const roll = document.querySelector<HTMLElement>("#roll")!;
-        const fields = document.querySelectorAll<HTMLElement>(".field");
+        const startField = document.getElementsByClassName("pawns-container");
+        const input = document.querySelectorAll<HTMLInputElement>("input");
 
         let currentPlayer = 0;
-        let players: Player[];
+        let players: Player[]; 
+
+        var dummyPlayer = new Player("Adam", true); // workaround for typerror players is undefined
+        players = [dummyPlayer];
 
         playBtn.addEventListener('click', () => {
             landingPage.style.display = "none";
             gameContainer.style.display = "flex";
+ 
+            for (let i=0; i < input.length; i++) {
+                if (input[i].value) {
+                    let newPlayer = new Player(input[i].value, true);
+                    players[i] = newPlayer;
+                    addPawn(i);
+                }
+            }
         })
-
-        var player1 = new Player("Adam", true); // temporary, TODO players array and current player variable
-        var player2 = new Player("Tomek", true); // temporary, TODO players array and current player variable
-        var player3 = new Player("Wojtek", true); // temporary, TODO players array and current player variable
-        var player4 = new Player("Zbyszek", true); // temporary, TODO players array and current player variable
-        players = [player1, player2, player3, player4];
 
         roll.addEventListener('click', () => {
             
