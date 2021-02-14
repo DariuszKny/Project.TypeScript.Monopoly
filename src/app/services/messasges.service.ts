@@ -25,15 +25,15 @@ export module Messages {
   export const playerPaidMoneyToOwner = (player: Player, owner: Player, price: number, priceDiscount: number): string => {
     let optionalMessageContent: string = "";
     if(priceDiscount > 0) optionalMessageContent = `(with ${priceDiscount*100}% discount)`
-    return `${player.playerName} paid ${price} to ${owner.playerName} ${optionalMessageContent}`;
+    return `${player.playerName} paid ${price}$ to ${owner.playerName} ${optionalMessageContent}`;
   }
 
   export const playerGotMoney = (player: Player, money: number): string => {
-    return `${player.playerName} got ${money}`;
+    return `${player.playerName} got ${money}$`;
   }
 
   export const playerLostMoney = (player: Player, money: number): string => {
-    return `${player.playerName} lost ${money}`;
+    return `${player.playerName} lost ${money}$`;
   }
 
   export const playerMoved = (player: Player, amount: number): string => {
@@ -43,7 +43,7 @@ export module Messages {
   }
 
   export const playerPassedStart = (player: Player): string => {
-    return `${player.playerName} passed START and recieved ${PASSING_START_SALARY}`;
+    return `${player.playerName} passed START and recieved ${PASSING_START_SALARY}$`;
   }
 
   export const playerWentToJail = (player: Player): string => {
