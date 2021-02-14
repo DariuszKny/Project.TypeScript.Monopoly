@@ -1,11 +1,14 @@
 import { Player } from "../../models/player.model";
 import { getPriceDiscount } from "./hobbit-card.service";
+import { Messages } from "../messasges.service";
+import { logMessage } from "../info-board.service";
 
 export const payMoneyToCardOwner = (player: Player, owner: Player, money: number): void  => {
   const priceDiscount = getPriceDiscount(player);
   const moneyToPay = money - priceDiscount*money; 
   player.giveMoney(moneyToPay);
   owner.takeMoney(moneyToPay);
+  logMessage(Messages.playerPaidMoneyToOwner(player, owner, money, priceDiscount));
 }
 
 export const findCardOwner = (players: Player[], cardId: number): Player => {
@@ -26,4 +29,14 @@ export const numberOfOwnedCards = (player: Player, cards: number[]): number => {
 
 export const playerOwnsCard = (player: Player, cardId: number): boolean => {
   return player.playerCards.includes(cardId)
+}
+
+export const playerLosesMoney = (player: Player, money: number): void => {
+  player.giveMoney(money);
+  logMessage(Messages.playerLostMoney(player, money));
+}
+
+export const playerGetsMoney = (player: Player, money: number): void => {
+  player.takeMoney(money);
+  logMessage(Messages.playerGotMoney(player, money));
 }

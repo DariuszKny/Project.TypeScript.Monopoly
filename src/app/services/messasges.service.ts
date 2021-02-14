@@ -20,10 +20,6 @@ export module Messages {
     return `${player.playerName} paid ${price} to ${owner.playerName} ${optionalMessageContent}`;
   }
 
-  export const playerPaidTax= (player: Player, tax: number): string => {
-    return `${player.playerName} paid a ${tax} tax`;
-  }
-
   export const playerGotMoney = (player: Player, money: number): string => {
     return `${player.playerName} got ${money}`;
   }
