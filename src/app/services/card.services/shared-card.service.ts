@@ -5,7 +5,7 @@ import { logMessage } from "../info-board.service";
 
 export const payMoneyToCardOwner = (player: Player, owner: Player, money: number): void  => {
   const priceDiscount = getPriceDiscount(player);
-  const moneyToPay = money - priceDiscount*money; 
+  const moneyToPay = Math.round(money - priceDiscount*money); 
   player.giveMoney(moneyToPay);
   owner.takeMoney(moneyToPay);
   logMessage(Messages.playerPaidMoneyToOwner(player, owner, money, priceDiscount));
