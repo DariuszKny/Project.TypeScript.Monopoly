@@ -1,5 +1,5 @@
 import { Player } from "../models/player.model";
-import { playerRolledDiceMessage } from "./messasges.service";
+import { Messages } from "./messasges.service";
 
 const images = require("../../../images/dice/*.png");
 
@@ -10,7 +10,7 @@ export function showThrowResults(dice: number[], currentPlayer: Player) {
     die1.src = images[`DICEROLL${dice[0]}`];
     die2.src = images[`DICEROLL${dice[1]}`];
 
-    logMessage(playerRolledDiceMessage(currentPlayer, dice));
+    logMessage(Messages.playerRolledDice(currentPlayer, dice));
 }
 
 export const logMessage = (message: string): void => {
