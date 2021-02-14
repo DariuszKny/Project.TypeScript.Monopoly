@@ -18,6 +18,7 @@ import {doubleCheck} from "../controllers/double-check.controller";
 import {Player} from "../models/player.model";
 import {GameModel} from "../models/game.model";
 import { Messages, logMessage} from "./messasges.service";
+import { playerGetsMoney } from "./card.services/shared-card.service";
 
 
 export type gameField = {card: Card, action?: unknown};
@@ -42,9 +43,9 @@ export const playerMove = function (game: GameModel) {
   // buyCard(currentPlayer.playerPosition);   TODO
 }
 
-let movePlayer = function (result: number, game: GameModel) {
+let movePlayer = function (sumOfDices: number, game: GameModel) {
   let color: string;
-  let pos: number;
+  let positonOnBoard: number;
 
   switch(game.activePlayer.id) {
     case 0:
@@ -62,16 +63,18 @@ let movePlayer = function (result: number, game: GameModel) {
     default:
       color = 'GREEN';
   }
+  game.activePlayer.move(sumOfDices);
+  positonOnBoard = game.activePlayer.playerCurrentPosition;
 
-  if (game.activePlayer.playerCurrentPosition + result > 39) {
-    pos = result - (39 - game.activePlayer.playerCurrentPosition)
-  }
-  else {
-    pos = game.activePlayer.playerCurrentPosition + result;
-  }
+  // if (game.activePlayer.playerCurrentPosition + result > 39) {
+  //   pos = result - (39 - game.activePlayer.playerCurrentPosition)
+  // }
+  // else {
+  //   pos = game.activePlayer.playerCurrentPosition + result;
+  // }
 
   const images = require('../../../images/pawns/*.png');
-  const nextField = document.querySelector(`#f${pos} > .pawns-container `)!;
+  const nextField = document.querySelector(`#f${positonOnBoard} > .pawns-container `)!;
   const pawn = document.querySelector<HTMLElement>(`#${color}`)!;
   const newPawn = document.createElement('img');
 
@@ -81,11 +84,11 @@ let movePlayer = function (result: number, game: GameModel) {
   if(nextField) {
     nextField.appendChild(newPawn)
   } else {
-    console.log("NOT FOUND on field "+ pos)
+    console.log("NOT FOUND on field "+ positonOnBoard)
 
   }
 
-  game.activePlayer.playerCurrentPosition = pos;
+  // game.activePlayer.playerCurrentPosition = pos;
 }
 
 const images = require("../../../images/dice/*.png");
