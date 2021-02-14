@@ -11,9 +11,7 @@ export const payHobbitTax = (player: Player, players: Player[], hobbit: HobbitCa
   payMoneyToCardOwner(player, hobbitOwner, HOBBIT_TAX);
 }
 
-export const priceMultiplier = (player: Player): number => {
+export const getPriceDiscount = (player: Player): number => {
   const numberOfOwnedHobbits = numberOfOwnedCards(player, HOBBIT_CARDS_IDS);
-  const fullPriceMultiplier = 1;
-  let lowerRentMultiplier: number = numberOfOwnedHobbits*LOWER_RENT_MULTIPLIER;
-  return fullPriceMultiplier - lowerRentMultiplier;
+  return numberOfOwnedHobbits*LOWER_RENT_MULTIPLIER;
 }
