@@ -14,6 +14,6 @@ export const playerPassedStart = (player: Player): void => {
 export const goToJail = (player: Player): void => {
   player.playerIsJailed = true;
   player.playerBlockedTurns = 2;
-  player.playerCurrentPosition = JAIL_FIELD;
+  player.moveToField(JAIL_FIELD);
   logMessage(Messages.playerWentToJail(player));
 }

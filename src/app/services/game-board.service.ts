@@ -16,6 +16,7 @@ import * as rent from "../constants/prices";
 import {throwDice} from "../models/dice.model";
 import {doubleCheck} from "../controllers/double-check.controller";
 import {Player} from "../models/player.model";
+import { PlayerService} from "./player.service" 
 import {GameModel} from "../models/game.model";
 import { Messages, logMessage} from "./messasges.service";
 import { playerGetsMoney } from "./card.services/shared-card.service";
@@ -24,11 +25,13 @@ import { playerGetsMoney } from "./card.services/shared-card.service";
 export type gameField = {card: Card, action?: unknown};
 
 export const playerMove = function (game: GameModel) {
-  let dice = throwDice(game.activePlayer);
-  doubleCheck(dice, game.activePlayer);
-  showThrowResults(dice, game.activePlayer);
-
-  // if (player1.playerDouble == 3) {
+  goToJail(game.activePlayer);
+  // if(game.activePlayer.playerDouble === 0) throwDiceAndMovePlayer(game);
+  // if (game.activePlayer.playerDouble === 1) throwDiceAndMovePlayer(game);
+  // if (game.activePlayer.playerDouble === 2) goToJail(game.activePlayer);
+  
+  // game.activePlayer.playerDouble = 0;
+  // if (game.activePlayer.playerDouble === 3)
   //         player1.playerCurrentPosition = 11;
   //         // movePlayer(currentPlayer); TODO
   //         // newRound(); TODO
@@ -39,48 +42,16 @@ export const playerMove = function (game: GameModel) {
   //     // buyCard(currentPlayer.playerPosition);   TODO
   // }
 
-  movePlayer(dice[2], game);
   // buyCard(currentPlayer.playerPosition);   TODO
 }
-
-let movePlayer = function (sumOfDices: number, game: GameModel) {
-  let color: string;
-  let positonOnBoard: number;
-
-  switch(game.activePlayer.id) {
-    case 0:
-      color = 'BLUE';
-      break;
-    case 1:
-      color = 'GREEN';
-      break;
-    case 2:
-      color = 'YELLOW';
-      break;
-    case 3:
-      color = 'RED';
-      break;
-    default:
-      color = 'GREEN';
-  }
+const throwDiceAndMovePlayer = function (game: GameModel) {
+  const dice = throwDice(game.activePlayer);
+  const sumOfDices = dice[2];
+  doubleCheck(dice, game.activePlayer);
+  showThrowResults(dice, game.activePlayer);
   game.activePlayer.move(sumOfDices);
-  positonOnBoard = game.activePlayer.playerCurrentPosition;
-
-  const images = require('../../../images/pawns/*.png');
-  const nextField = document.querySelector(`#f${positonOnBoard} > .pawns-container `)!;
-  const pawn = document.querySelector<HTMLElement>(`#${color}`)!;
-  const newPawn = document.createElement('img');
-
-  pawn.parentNode!.removeChild(pawn);
-  newPawn.src = images[color];
-  newPawn.setAttribute('id', color);
-  if(nextField) {
-    nextField.appendChild(newPawn)
-  } else {
-    console.log("NOT FOUND on field "+ positonOnBoard)
-
-  }
 }
+
 
 const images = require("../../../images/dice/*.png");
 

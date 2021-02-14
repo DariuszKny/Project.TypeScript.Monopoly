@@ -145,4 +145,11 @@ export class Player {
       movePawnOnBoard(this);
       playerPassedStart(this);
     }
+
+    moveToField(fieldNumber: number) {
+      this.previousPosition = this.currentPosition;
+      this.currentPosition = fieldNumber;
+      movePawnOnBoard(this);
+      playerPassedStart(this);
+    }
 }
