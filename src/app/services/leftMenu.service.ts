@@ -7,19 +7,17 @@ export module LeftMenuService {
         if(fieldId == "f0" || fieldId == "f10" || fieldId == "f20" || fieldId == "f30") {
             return
         } else {
-            // @ts-ignore
             preview.src = images[`${fieldId}`]
         }
     }
 
     export let showPlayerCard = function (preview: HTMLImageElement, id: string):void {
-        // @ts-ignore
         preview.src = images[`${id}`]
     }
 
-    export const images = {
-        "f0" : require(`../../../images/cards/0.png`),
-        "f1" : require(`../../../images/cards/1.png`),
+    export const images:{[index: string]: any} = {
+        "f0":  require(`../../../images/cards/0.png`),
+        "f1": require(`../../../images/cards/1.png`),
         "f2" : require(`../../../images/cards/2.png`),
         "f3" : require(`../../../images/cards/3.png`),
         "f4" : require(`../../../images/cards/4.png`),
