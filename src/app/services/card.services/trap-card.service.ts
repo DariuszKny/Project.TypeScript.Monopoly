@@ -14,6 +14,6 @@ export const loseMoneyAndMoveForward = (player: Player): void => {
 
 const loseMoneyAndMove = (player: Player, money: number, fieldsToMove: number): void => {
   playerLosesMoney(player, money);
-  player.move(fieldsToMove);
+  player.moveNumberOfFields(fieldsToMove);
   logMessage(Messages.playerMoved(player, fieldsToMove));
 }

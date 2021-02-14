@@ -134,7 +134,7 @@ export class Player {
         else console.log("You don't have enough money");
     }
 
-    move(numberOfFields: number) {
+    moveNumberOfFields(numberOfFields: number) {
       // if(this.blockedTurns > 0) {
       //   console.log(`You are in Jail, you have to wait ${this.blockedTurns} turns`);
       //   this.blockedTurns--;

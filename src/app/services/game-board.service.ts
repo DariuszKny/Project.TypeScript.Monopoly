@@ -49,7 +49,7 @@ const throwDiceAndMovePlayer = function (game: GameModel) {
   const sumOfDices = dice[2];
   doubleCheck(dice, game.activePlayer);
   showThrowResults(dice, game.activePlayer);
-  game.activePlayer.move(sumOfDices);
+  game.activePlayer.moveNumberOfFields(sumOfDices);
 }
 
 
