@@ -1,4 +1,4 @@
-import { NUMBER_OF_FIELDS } from "../constants/game-constants"
+import { NUMBER_OF_FIELDS, START_FIELD } from "../constants/game-constants"
 import { playerPassedStart } from "../services/card.services/base-card.service";
 import {Card} from "./card.models/abstract-card.model";
 
@@ -17,8 +17,8 @@ export class Player {
 
     public constructor(id: number,name: string, goodChampion: boolean){
         this._id = id
-        this.currentPosition = 0;
-        this.previousPosition = -1;
+        this.currentPosition = START_FIELD;
+        this.previousPosition = START_FIELD;
         this.name = name;
         this.goodChampion = goodChampion;
         this.money = 1500;
