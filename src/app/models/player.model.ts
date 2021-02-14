@@ -1,6 +1,5 @@
 import { NUMBER_OF_FIELDS, START_FIELD } from "../constants/game-constants"
 import { playerPassedStart } from "../services/card.services/base-card.service";
-import {Card} from "./card.models/abstract-card.model";
 
 export class Player {
     readonly _id: number;
