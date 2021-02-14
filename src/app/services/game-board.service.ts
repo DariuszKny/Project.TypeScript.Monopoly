@@ -66,13 +66,6 @@ let movePlayer = function (sumOfDices: number, game: GameModel) {
   game.activePlayer.move(sumOfDices);
   positonOnBoard = game.activePlayer.playerCurrentPosition;
 
-  // if (game.activePlayer.playerCurrentPosition + result > 39) {
-  //   pos = result - (39 - game.activePlayer.playerCurrentPosition)
-  // }
-  // else {
-  //   pos = game.activePlayer.playerCurrentPosition + result;
-  // }
-
   const images = require('../../../images/pawns/*.png');
   const nextField = document.querySelector(`#f${positonOnBoard} > .pawns-container `)!;
   const pawn = document.querySelector<HTMLElement>(`#${color}`)!;
@@ -87,8 +80,6 @@ let movePlayer = function (sumOfDices: number, game: GameModel) {
     console.log("NOT FOUND on field "+ positonOnBoard)
 
   }
-
-  // game.activePlayer.playerCurrentPosition = pos;
 }
 
 const images = require("../../../images/dice/*.png");
