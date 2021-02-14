@@ -1,4 +1,4 @@
-import {GameController} from "./controllers/game.controller"
+import {GameController} from "./controllers/game.controller";
 
 class App {
     _init() {
