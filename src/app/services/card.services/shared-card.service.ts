@@ -1,7 +1,6 @@
 import { Player } from "../../models/player.model";
 import { getPriceDiscount } from "./hobbit-card.service";
-import { Messages } from "../messasges.service";
-import { logMessage } from "../info-board.service";
+import { Messages, logMessage } from "../messasges.service";
 
 export const payMoneyToCardOwner = (player: Player, owner: Player, money: number): void  => {
   const priceDiscount = getPriceDiscount(player);

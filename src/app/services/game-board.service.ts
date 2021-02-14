@@ -17,7 +17,7 @@ import {throwDice} from "../models/dice.model";
 import {doubleCheck} from "../controllers/double-check.controller";
 import {Player} from "../models/player.model";
 import {GameModel} from "../models/game.model";
-import { Messages } from "./messasges.service";
+import { Messages, logMessage} from "./messasges.service";
 
 
 export type gameField = {card: Card, action?: unknown};
@@ -98,14 +98,6 @@ function showThrowResults(dice: number[], currentPlayer: Player) {
   die2.src = images[`DICEROLL${dice[1]}`];
 
   logMessage(Messages.playerRolledDice(currentPlayer, dice));
-}
-
-export const logMessage = (message: string): void => {
-  const messageContainer = document.querySelector<HTMLElement>(".message-container")!;
-  const newParagraph = document.createElement("p");
-  const newMessage = document.createTextNode(message);
-  newParagraph.appendChild(newMessage);
-  messageContainer.insertBefore(newParagraph, messageContainer.firstChild);
 }
 
 export const gameBoard: gameField[] = [

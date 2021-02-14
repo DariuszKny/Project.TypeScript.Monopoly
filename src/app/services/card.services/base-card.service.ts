@@ -1,6 +1,5 @@
 import { Player } from "../../models/player.model";
-import { Messages } from "../messasges.service";
-import { logMessage } from "../info-board.service";
+import { Messages, logMessage } from "../messasges.service";
 import { JAIL_FIELD } from "../../constants/game-constants";
 import { PASSING_START_SALARY } from "../../constants/prices";
 

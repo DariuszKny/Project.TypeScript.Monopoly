@@ -2,6 +2,14 @@ import { Player } from "../models/player.model";
 import { ObtainableCard } from "../models/card.models/abstract-card.model";
 import { PASSING_START_SALARY } from "../constants/prices";
 
+export const logMessage = (message: string): void => {
+  const messageContainer = document.querySelector<HTMLElement>(".message-container")!;
+  const newParagraph = document.createElement("p");
+  const newMessage = document.createTextNode(message);
+  newParagraph.appendChild(newMessage);
+  messageContainer.insertBefore(newParagraph, messageContainer.firstChild);
+}
+
 export module Messages {
 
   export const playerRolledDice = (player: Player, dice: number[]): string => {
