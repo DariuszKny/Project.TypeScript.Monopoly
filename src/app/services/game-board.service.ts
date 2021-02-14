@@ -25,12 +25,11 @@ import { playerGetsMoney } from "./card.services/shared-card.service";
 export type gameField = {card: Card, action?: unknown};
 
 export const playerMove = function (game: GameModel) {
-  goToJail(game.activePlayer);
-  // if(game.activePlayer.playerDouble === 0) throwDiceAndMovePlayer(game);
-  // if (game.activePlayer.playerDouble === 1) throwDiceAndMovePlayer(game);
-  // if (game.activePlayer.playerDouble === 2) goToJail(game.activePlayer);
-  
-  // game.activePlayer.playerDouble = 0;
+  if(game.activePlayer.playerDouble === 0) throwDiceAndMovePlayer(game);
+  if (game.activePlayer.playerDouble === 1) throwDiceAndMovePlayer(game);
+  if (game.activePlayer.playerDouble === 2) goToJail(game.activePlayer);
+  game.activePlayer.playerDouble = 0;
+
   // if (game.activePlayer.playerDouble === 3)
   //         player1.playerCurrentPosition = 11;
   //         // movePlayer(currentPlayer); TODO
@@ -44,6 +43,7 @@ export const playerMove = function (game: GameModel) {
 
   // buyCard(currentPlayer.playerPosition);   TODO
 }
+
 const throwDiceAndMovePlayer = function (game: GameModel) {
   const dice = throwDice(game.activePlayer);
   const sumOfDices = dice[2];
