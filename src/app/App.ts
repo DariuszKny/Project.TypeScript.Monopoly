@@ -12,54 +12,6 @@ class App {
         console.log('start');
         const gameController = GameController;
 
-
-        const playBtn = document.querySelector(".btn-main")!;
-        const landingPage = document.querySelector<HTMLElement>(".landingPage")!;
-        const gameContainer = document.querySelector<HTMLElement>(".game-container")!;
-        const roll = document.querySelector<HTMLElement>("#roll")!;
-        const startField = document.getElementsByClassName("pawns-container");
-        const input = document.querySelectorAll<HTMLInputElement>("input");
-
-        let currentPlayer = 0;
-        let players: Player[]; 
-
-        var dummyPlayer = new Player(0, "Adam", true); // workaround for typerror players is undefined
-        players = [dummyPlayer];
-
-        playBtn.addEventListener('click', () => {
-            landingPage.style.display = "none";
-            gameContainer.style.display = "flex";
- 
-            for (let i=0; i < input.length; i++) {
-                if (input[i].value) {
-                    let newPlayer = new Player(i, input[i].value, true);
-                    players[i] = newPlayer;
-                    addPawn(i);
-                }
-            }
-        })
-
-        roll.addEventListener('click', () => {
-            
-            let dice = throwDice(players[currentPlayer]);
-            doubleCheck(dice, players[currentPlayer]);
-            showThrowResults(dice, players[currentPlayer]);
-
-            // if (player1.playerDouble == 3) {
-            //         player1.playerCurrentPosition = 11;
-            //         // movePlayer(currentPlayer); TODO
-            //         // newRound(); TODO
-            // }
-
-            // if (player1.playerDouble > 0) {
-            //     // movePlayer(dice); TODO
-            //     // buyCard(currentPlayer.playerPosition);   TODO
-            // }
-
-            movePlayer(dice[2], players[currentPlayer], currentPlayer);
-            // buyCard(currentPlayer.playerPosition);   TODO
-            currentPlayer = newRound(players, currentPlayer);
-        })
     }
 }
 

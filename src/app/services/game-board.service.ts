@@ -13,8 +13,96 @@ import { payArtifactTax } from "./card.services/artifact-card.service";
 import { payHobbitTax } from "./card.services/hobbit-card.service";
 import { Province } from "../constants/provinces";
 import * as rent from "../constants/prices";
+import {throwDice} from "../models/dice.model";
+import {doubleCheck} from "../controllers/double-check.controller";
+import {Player} from "../models/player.model";
+import {GameModel} from "../models/game.model";
 
-type gameField = {card: Card, action?: unknown}; 
+export type gameField = {card: Card, action?: unknown};
+
+export const playerMove = function (game: GameModel) {
+  let dice = throwDice(game.activePlayer);
+  doubleCheck(dice, game.activePlayer);
+  showThrowResults(dice, game.activePlayer);
+
+  // if (player1.playerDouble == 3) {
+  //         player1.playerCurrentPosition = 11;
+  //         // movePlayer(currentPlayer); TODO
+  //         // newRound(); TODO
+  // }
+
+  // if (player1.playerDouble > 0) {
+  //     // movePlayer(dice); TODO
+  //     // buyCard(currentPlayer.playerPosition);   TODO
+  // }
+
+  movePlayer(dice[2], game);
+  // buyCard(currentPlayer.playerPosition);   TODO
+}
+
+let movePlayer = function (result: number, game: GameModel) {
+  let color: string;
+  let pos: number;
+
+  switch(game.activePlayer.id) {
+    case 0:
+      color = 'BLUE';
+      break;
+    case 1:
+      color = 'GREEN';
+      break;
+    case 2:
+      color = 'YELLOW';
+      break;
+    case 3:
+      color = 'RED';
+      break;
+    default:
+      color = 'GREEN';
+  }
+
+  if (game.activePlayer.playerCurrentPosition + result > 39) {
+    pos = result - (39 - game.activePlayer.playerCurrentPosition)
+  }
+  else {
+    pos = game.activePlayer.playerCurrentPosition + result;
+  }
+
+  const images = require('../../../images/pawns/*.png');
+  const nextField = document.querySelector(`#f${pos} > .pawns-container `)!;
+  const pawn = document.querySelector<HTMLElement>(`#${color}`)!;
+  const newPawn = document.createElement('img');
+
+  pawn.parentNode!.removeChild(pawn);
+  newPawn.src = images[color];
+  newPawn.setAttribute('id', color);
+  if(nextField) {
+    nextField.appendChild(newPawn)
+  } else {
+    console.log("NOT FOUND on field "+ pos)
+
+  }
+
+  game.activePlayer.playerCurrentPosition = pos;
+}
+
+const images = require("../../../images/dice/*.png");
+
+ function showThrowResults(dice: number[], currentPlayer: Player) {
+
+  const die1 = document.querySelector<HTMLImageElement>("#die1")!;
+  const die2 = document.querySelector<HTMLImageElement>("#die2")!;
+  const info = document.querySelector<HTMLElement>(".message-container")!;
+
+  die1.src = images[`DICEROLL${dice[0]}`];
+  die2.src = images[`DICEROLL${dice[1]}`];
+
+  const p = document.createElement("p");
+  const node = document.createTextNode(`${currentPlayer.playerName} has rolled ${dice[0]} and ${dice[1]}`)
+  p.appendChild(node);
+
+  info.insertBefore(p, info.firstChild);
+}
 
 export const gameBoard: gameField[] = [
   {card: new BaseCard(0, "START", "Start")},

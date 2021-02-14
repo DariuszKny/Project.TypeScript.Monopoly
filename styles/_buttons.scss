@@ -10,12 +10,22 @@
   }
 
   &-main {
-    color: darkgoldenrod;
-    background-color: rgba(80,80,80, 0.2);
-    border-color: darkgoldenrod;
+    color: black;
+    background-color: goldenrod;
+    border-color: goldenrod;
 
     &:hover {
       background-color: darkgoldenrod;
+      color: black;
+    }
+  }
+
+  &-disabled {
+    color: black;
+    background-color: rgba(80,80,80, 0.2);
+    border-color: rgba(80,80,80, 0.2) ;
+    &:hover {
+      background-color: rgba(80,80,80, 0.2);
       color: black;
     }
   }
