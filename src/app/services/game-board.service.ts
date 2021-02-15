@@ -48,16 +48,16 @@ let movePlayer = function (result: number, game: GameModel) {
 
   switch(game.activePlayer.id) {
     case 0:
-      color = 'BLUE';
+      color = 'RED';
       break;
     case 1:
-      color = 'GREEN';
+      color = 'BLUE';
       break;
     case 2:
-      color = 'YELLOW';
+      color = 'GREEN';
       break;
     case 3:
-      color = 'RED';
+      color = 'YELLOW';
       break;
     default:
       color = 'GREEN';

@@ -11,17 +11,43 @@
 <div id="chess-app">
 
    <!--LANDING PAGE-->
-<div class="landingPage">
-   <h1>LORD OF THE RINGS <br/> Monopoly</h1>
-   <div class="playerInput">     
-         <label>Enter players names</label>
-         <input>
-         <input>
-         <input>
-         <input>
+   <div class="landingPage">
+      <h1>LORD OF THE RINGS <br/> Monopoly</h1>
+      <button id="buttonSettingsPlayer" class="btn btn-main">Play</button>
    </div>
-   <button id="buttonPlay" class="btn btn-main">Play</button>
-</div>
+
+   <div class="settingsPage">
+      <div class="settingsPlayer">
+         <h2>Please Enter players names</h2>
+         <div class="playerInput">
+            <label for="player0"><span style="color: red">Player One</span></label><input id="player0">
+            <label for="player1"><span style="color: blue">Player Two</span></label><input id="player1">
+            <label for="player2"><span style="color: green">Player Three</span></label><input id="player2">
+            <label for="player3"><span style="color: yellow">Player Four</span></label><input id="player3">
+         </div>
+         <button id="buttonSettingsTime" class="btn btn-main">Next</button>
+      </div>
+      <div class="settingsTime">
+         <h2>Please select game time</h2>
+         <div class="time-container">
+            <div id="t1800" class="selected-time">30 min</div>
+            <div id="t3600" class="selected-time">60 min</div>
+            <div id="t7200" class="selected-time">120 min</div>
+            <div id="t14400" class="selected-time">240 min</div>
+         </div>
+
+      </div>
+      <div class="settingsChampions">
+         <h2><span id="playerName"></span> please choose Your hero</h2>
+         <div class="champion-container">
+            <img id="Aragorn" class="champion" src="images/champions/aragorn.png" alt="">
+            <img id="Gandalf" class="champion" src="images/champions/gandalf.png" alt="">
+            <img id="Saruman" class="champion" src="images/champions/saruman.png" alt="">
+            <img id="Sauron" class="champion" src="images/champions/sauron.png" alt="">
+         </div>
+         <button id="buttonPlay"  class="btn btn-main">Play</button>
+      </div>
+   </div>
 
 <div class="game-container">
 
