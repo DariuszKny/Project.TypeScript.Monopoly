@@ -96,6 +96,8 @@ export module GameSettings {
     }
 
     currentChooser = currentChooser + 1;
+    if(currentChooser != settings.players.length) text.innerText = settings.players[currentChooser].name;
+
 
     if (currentChooser == settings.players.length) {
       d.style.display = 'none';
@@ -105,6 +107,7 @@ export module GameSettings {
         [document.getElementById('buttonPlay')! as HTMLButtonElement],
       );
     }
+
 
     console.log(settings);
   };
