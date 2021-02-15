@@ -37,8 +37,6 @@ export module GameSettings {
 
     navigationPages.settingsPlayer.style.display = 'none';
     navigationPages.settingsTime.style.display = 'flex';
-
-    console.log(settings);
   };
 
   export let timeChoose = function (
@@ -76,7 +74,6 @@ export module GameSettings {
       '.champion-container',
     )! as HTMLElement;
     d?.removeChild(document.getElementById(champ.id)!);
-    console.log(currentChooser);
     switch (champ.id) {
       case 'Aragorn':
         settings.players[currentChooser].champ = Hero.Aragorn;
@@ -108,7 +105,5 @@ export module GameSettings {
       );
     }
 
-
-    console.log(settings);
   };
 }
