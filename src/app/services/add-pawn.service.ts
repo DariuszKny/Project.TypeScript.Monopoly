@@ -2,7 +2,7 @@ import { Player } from "../models/player.model";
 
 export function addPawn(index: number) {
 
-    enum colors {BLUE, GREEN, YELLOW, RED};
+    enum colors {RED, BLUE, GREEN, YELLOW};
 
     const images = require('../../../images/pawns/*.png');
     const nextField = document.querySelector('#f0 > .pawns-container ')!;

@@ -13,10 +13,11 @@ import {NavigationPagesView} from "../views/navigationPages.view";
 import {PlayerService} from "../services/player.service";
 import {playerMove, throwDiceAndMovePlayer} from "../services/game-board.service";
 import {Disabler} from "../services/disabler.service";
-import {goToJail} from "../services/card.services/base-card.service"
+import {SettingsController} from "./settings.controller";
 
 export module GameController {
     import disableEnable = Disabler.disableEnable;
+    import settings = SettingsController.settings;
     const leftMenuView = new LeftMenuView()
     const leftMenuService = LeftMenuService;
     const rightMenuService = RightMenuService;
@@ -55,13 +56,18 @@ export module GameController {
     })
 
     gameOptionView.buttonPlay?.addEventListener('click', function () {
-        navigationPages.landingPage.style.display = "none";
+        navigationPages.settingsPage.style.display = "none"
+        navigationPages.settingsChampions.style.display = "none";
         navigationPages.gameContainer.style.display = "flex";
+        let gameSettings = settings
+        playerService.createPlayers(gameSettings, game)
         for (let player in game.players) {
             addPawn(game.players[player].id);
         }
         disableEnable([mainBoardView.buttonNextPlayer],[])
-        timerService.startTimer(gameOption.gameTime, game, leftMenuView)
+        timerService.startTimer(gameSettings.time, game, leftMenuView)
+        console.log(game.players)
+        console.log(game.activePlayer)
     })
 
 

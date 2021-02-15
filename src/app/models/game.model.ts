@@ -3,7 +3,7 @@ import {gameBoard, gameField} from "../services/game-board.service"
 import {PlayerService} from "../services/player.service"
 
 export class GameModel {
-    private _players: Player[] =  PlayerService.createPlayers();
+    private _players: Player[] = [];
     private _activePlayer: Player = this._players[0];
     private _gameBoard = gameBoard;
     private _isEnded = false;
