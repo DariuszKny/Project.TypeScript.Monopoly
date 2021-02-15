@@ -43,9 +43,13 @@ export class Player {
         return this._id;
     }
  
-    public get playerName(): string {
+    public get name(): string {
       return this._name;
-  }
+    }
+
+    public get isGoodChampion(): boolean {
+      return this._isGoodChampion;
+    }
 
     public get color(): string {
         return this._color;
@@ -82,14 +86,6 @@ export class Player {
     public set cards(cards : number[]) {
         this._cards = [...cards];
     }
-    
-    public get isJailed() : boolean {
-        return this._isJailed;
-    }
-
-    public set isJailed(isJailed : boolean) {
-        this._isJailed = isJailed;
-    }
 
     public get numberOfDoubles() : number {
         return this._numberOfDoubles;
@@ -105,6 +101,14 @@ export class Player {
 
     public set canThrowDices(canThrowDices : boolean) {
         this._canThrowDices = canThrowDices;
+    }
+
+    public get isJailed() : boolean {
+      return this._isJailed;
+    }
+
+    public set isJailed(isJailed : boolean) {
+      this._isJailed = isJailed;
     }
 
     public get blockedTurns() : number {

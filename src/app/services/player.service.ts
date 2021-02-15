@@ -21,7 +21,7 @@ export module PlayerService {
         } else {
             game.activePlayer = game.players[currentPlayer.id+1]
         }
-        game.activePlayer.playerDouble = 0;
+        game.activePlayer.numberOfDoubles = 0;
         showActivePlayer(rightMenuView,game)
     }
 

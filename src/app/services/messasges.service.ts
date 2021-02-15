@@ -14,47 +14,47 @@ export module Messages {
 
   export const playerRolledDice = (player: Player, dice: number[]): string => {
     const [firstDiceResult, secondDiceResult] = dice;
-    if(firstDiceResult === secondDiceResult) return `${player.playerName} rolled a double of ${firstDiceResult}`;
-    return `${player.playerName} rolled a ${firstDiceResult} and a ${secondDiceResult}`;
+    if(firstDiceResult === secondDiceResult) return `${player.name} rolled a double of ${firstDiceResult}`;
+    return `${player.name} rolled a ${firstDiceResult} and a ${secondDiceResult}`;
   }
 
   export const playerBoughtCard = (player: Player, card: ObtainableCard): string => {
-    return `${player.playerName} bought ${card.name}`;
+    return `${player.name} bought ${card.name}`;
   }
 
   export const playerPaidMoneyToOwner = (player: Player, owner: Player, price: number, priceDiscount: number): string => {
     let optionalMessageContent: string = "";
     if(priceDiscount > 0) optionalMessageContent = `(with ${priceDiscount*100}% discount)`
-    return `${player.playerName} paid ${price}$ to ${owner.playerName} ${optionalMessageContent}`;
+    return `${player.name} paid ${price}$ to ${owner.name} ${optionalMessageContent}`;
   }
 
   export const playerGotMoney = (player: Player, money: number): string => {
-    return `${player.playerName} got ${money}$`;
+    return `${player.name} got ${money}$`;
   }
 
   export const playerLostMoney = (player: Player, money: number): string => {
-    return `${player.playerName} lost ${money}$`;
+    return `${player.name} lost ${money}$`;
   }
 
   export const playerMoved = (player: Player, amount: number): string => {
     let direction: string = "forward";
     if(amount < 0) direction = "backward";
-    return `${player.playerName} moved ${Math.abs(amount)} fields ${direction}`;
+    return `${player.name} moved ${Math.abs(amount)} fields ${direction}`;
   }
 
   export const playerPassedStart = (player: Player): string => {
-    return `${player.playerName} passed START and recieved ${PASSING_START_SALARY}$`;
+    return `${player.name} passed START and recieved ${PASSING_START_SALARY}$`;
   }
 
   export const playerWentToJail = (player: Player): string => {
-    return `${player.playerName} went to Jail and lost 2 turns`;
+    return `${player.name} went to Jail and lost 2 turns`;
   }
 
   export const playerWentBankrupt = (player: Player): string => {
-    return `${player.playerName} has gone bankrupt`;
+    return `${player.name} has gone bankrupt`;
   }
 
   export const playerWonTheGame = (player: Player): string => {
-    return `${player.playerName} has won the game`;
+    return `${player.name} has won the game`;
   }
 }
