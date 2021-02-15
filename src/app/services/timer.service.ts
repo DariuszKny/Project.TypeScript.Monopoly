@@ -29,23 +29,23 @@ export module TimerService {
   const endGame = function (players: Player[], endPageView: EndPageView) {
 
     let top = 0;
-    let winner = '';
+    let winner = [];
     for (let i = 0; i < players.length; i++) {
       if (players[i].money > top) {
         top = players[i].money;
-        winner = players[i].name;
+        winner[0] = players[i];
         console.log('end!')
       }
     };
     
     const game = document.querySelector<HTMLElement>('.game-container')!.style.display = 'none';
+    const images = require('../../../images/ending/*.jpg');
 
     const newParagraph = document.createElement('p');
-    newParagraph.innerHTML = `${winner}<br>has defeated all enemies!`
-    console.log(players[0]);
+    newParagraph.innerHTML = `${winner[0].name}<br>has defeated all enemies!`
     endPageView.winnerMessage.appendChild(newParagraph);
     endPageView.winnerMessage.style.display = 'flex';
-    console.log('end!')
+    endPageView.winnerMessage.style.backgroundImage = 'url(' +images[winner[0].hero] +')';
   };
 
   const showTime = function (
