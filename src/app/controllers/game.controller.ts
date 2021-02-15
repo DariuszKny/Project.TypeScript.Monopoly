@@ -13,6 +13,7 @@ import { PlayerService } from '../services/player.service';
 import { playerMove } from '../services/gameBoard.service';
 import { Disabler } from '../services/disabler.service';
 import { SettingsController } from './settings.controller';
+import { EndPageView } from '../views/endPage.view';
 
 export module GameController {
   import disableEnable = Disabler.disableEnable;
@@ -26,6 +27,7 @@ export module GameController {
   const timerService = TimerService;
   const navigationPages = new NavigationPagesView();
   const playerService = PlayerService;
+  const endGameView = new EndPageView();
 
   const gameOption = new gameOptionModel();
 
@@ -77,7 +79,7 @@ export module GameController {
       addPawn(game.players[player].id);
     }
     disableEnable([mainBoardView.buttonNextPlayer], []);
-    timerService.startTimer(gameSettings.time, game, leftMenuView);
+    timerService.startTimer(gameSettings.time, game, leftMenuView, endGameView);
     console.log(game.players);
     console.log(game.activePlayer);
   });
