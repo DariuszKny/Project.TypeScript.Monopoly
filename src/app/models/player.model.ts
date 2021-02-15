@@ -1,9 +1,10 @@
-import { NUMBER_OF_FIELDS } from "../constants/game-constants"
+import { NUMBER_OF_FIELDS, START_FIELD } from "../constants/game-constants"
 import { playerPassedStart } from "../services/card.services/base-card.service";
-import {Card} from "./card.models/abstract-card.model";
+import { movePawnOnBoard } from "../services/add-pawn.service";
 
 export class Player {
     readonly _id: number;
+    readonly _color: string;
     private currentPosition: number;
     private previousPosition: number;
     private name: string;
@@ -12,25 +13,44 @@ export class Player {
     private cards: number[] = [];
     private isJailed: boolean;
     private double: number;
-    private areDiceRolled: boolean;
+    private canThrowDices: boolean;
     private blockedTurns: number;
 
-    public constructor(id: number,name: string, goodChampion: boolean){
+    public constructor(id: number, name: string, goodChampion: boolean){
         this._id = id
-        this.currentPosition = 0;
-        this.previousPosition = -1;
+        this.currentPosition = START_FIELD;
+        this.previousPosition = START_FIELD;
         this.name = name;
         this.goodChampion = goodChampion;
         this.money = 1500;
         this.isJailed = false;
         this.double = 0;
-        this.areDiceRolled = false;
+        this.canThrowDices = true;
         this.blockedTurns = 0;
-    }
-
+        switch(this._id) {
+          case 0:
+            this._color = 'RED';
+            break;
+          case 1:
+            this._color = 'BLUE';
+            break;
+          case 2:
+            this._color = 'GREEN';
+            break;
+          case 3:
+            this._color = 'YELLOW';
+            break;
+          default:
+            this._color = 'GREEN';
+        }
+      }
 
     public get id(): number {
         return this._id;
+    }
+
+    public get color(): string {
+        return this._color;
     }
 
     public get playerCurrentPosition() : number {
@@ -89,12 +109,12 @@ export class Player {
         this.double = double;
     }
 
-    public get playerAreDiceRolled() : boolean {
-        return this.areDiceRolled;
+    public get playerCanThrowDices() : boolean {
+        return this.canThrowDices;
     }
 
-    public set playerAreDiceRolled(areDiceRolled : boolean) {
-        this.areDiceRolled = areDiceRolled;
+    public set playerCanThrowDices(canThrowDices : boolean) {
+        this.canThrowDices = canThrowDices;
     }
 
     public get playerBlockedTurns() : number {
@@ -114,14 +134,22 @@ export class Player {
         else console.log("You don't have enough money");
     }
 
-    move(numberOfFields: number) {
-      if(this.blockedTurns > 0) {
-        console.log(`You are in Jail, you have to wait ${this.blockedTurns} turns`);
-        this.blockedTurns--;
-        return;
-      }
+    moveNumberOfFields(numberOfFields: number) {
+      // if(this.blockedTurns > 0) {
+      //   console.log(`You are in Jail, you have to wait ${this.blockedTurns} turns`);
+      //   this.blockedTurns--;
+      //   return;
+      // }
       this.previousPosition = this.currentPosition;
       this.currentPosition = (this.currentPosition + numberOfFields) % NUMBER_OF_FIELDS;
+      movePawnOnBoard(this);
+      playerPassedStart(this);
+    }
+
+    moveToField(fieldNumber: number) {
+      this.previousPosition = this.currentPosition;
+      this.currentPosition = fieldNumber;
+      movePawnOnBoard(this);
       playerPassedStart(this);
     }
 }

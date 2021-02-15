@@ -1,19 +1,19 @@
 import { Player } from "../../models/player.model";
 import { Messages, logMessage } from "../messasges.service";
-import { JAIL_FIELD } from "../../constants/game-constants";
+import { JAIL_FIELD, START_FIELD } from "../../constants/game-constants";
 import { PASSING_START_SALARY } from "../../constants/prices";
 
 export const playerPassedStart = (player: Player): void => {
   if (player.playerIsJailed) return;
-  if(player.playerPreviousPosition > player.playerCurrentPosition) {
+  if(player.playerCurrentPosition > START_FIELD && player.playerPreviousPosition > player.playerCurrentPosition) {
     player.takeMoney(PASSING_START_SALARY);
+    logMessage(Messages.playerPassedStart(player));
   }
-  logMessage(Messages.playerPassedStart(player));
 }
 
 export const goToJail = (player: Player): void => {
   player.playerIsJailed = true;
   player.playerBlockedTurns = 2;
-  player.playerCurrentPosition = JAIL_FIELD;
+  player.moveToField(JAIL_FIELD);
   logMessage(Messages.playerWentToJail(player));
 }

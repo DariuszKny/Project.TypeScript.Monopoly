@@ -11,7 +11,7 @@ import {Player} from "../models/player.model";
 import {addPawn} from "../services/add-pawn.service";
 import {NavigationPagesView} from "../views/navigationPages.view";
 import {PlayerService} from "../services/player.service";
-import {playerMove} from "../services/game-board.service";
+import {playerMove, throwDiceAndMovePlayer} from "../services/game-board.service";
 import {Disabler} from "../services/disabler.service";
 import {SettingsController} from "./settings.controller";
 
@@ -52,7 +52,7 @@ export module GameController {
 
     mainBoardView.buttonRoll.addEventListener('click',function () {
         playerMove(game);
-        disableEnable([mainBoardView.buttonRoll],[mainBoardView.buttonNextPlayer])
+        if(!game.activePlayer.playerCanThrowDices) disableEnable([mainBoardView.buttonRoll],[mainBoardView.buttonNextPlayer])
     })
 
     gameOptionView.buttonPlay?.addEventListener('click', function () {
