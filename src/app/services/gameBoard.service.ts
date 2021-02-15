@@ -33,7 +33,7 @@ export const playerMove = function (game: GameModel) {
   if (game.activePlayer.numberOfDoubles <= 2)
     throwDiceAndMovePlayer(game);
   if (game.activePlayer.numberOfDoubles === 3)
-    goToJail(game.activePlayer);
+    goToJail(game);
 
   // if (game.activePlayer.playerDouble === 3)
   //         player1.playerCurrentPosition = 11;

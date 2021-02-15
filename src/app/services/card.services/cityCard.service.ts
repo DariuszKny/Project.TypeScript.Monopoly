@@ -1,5 +1,6 @@
 import { Player } from '../../models/player.model';
 import { CityCard } from '../../models/card.models/cityCard.model';
+import { GameModel } from "../../models/game.model";
 import {
   playerOwnsCard,
   findCardOwner,
@@ -8,19 +9,25 @@ import {
 } from './sharedCard.service';
 import * as provinces from '../../constants/provinces';
 
-export const payRent = (
-  player: Player,
-  players: Player[],
-  city: CityCard,
-): void => {
+export const payRent = (game: GameModel): void => {
+  const player = game.activePlayer;
+  const players = game.players;
+  const currentCard = game.gameBoard[game.activePlayer.currentPosition].card;
+  if(currentCard instanceof CityCard){
+    const city = currentCard;
   if (city.isObtainable) return; //if city wasnt bought by anyone
   if (playerOwnsCard(player, city.id)) return;
   const rent = city.rent[city.numberOfHouses];
   const cityOwner = findCardOwner(players, city.id);
   payMoneyToCardOwner(player, cityOwner, rent);
+  }
 };
 
-export const buyHouse = (player: Player, city: CityCard): void => {
+export const buyHouse = (game: GameModel): void => {
+  const player = game.activePlayer;
+  const currentCard = game.gameBoard[game.activePlayer.currentPosition].card;
+  if(currentCard instanceof CityCard){
+    const city = currentCard;
   if (
     playerOwnsAllCitiesInProvince(player, city) &&
     city.numberOfHouses < 5
@@ -28,6 +35,7 @@ export const buyHouse = (player: Player, city: CityCard): void => {
     player.takeMoney(city.priceOfHouses);
     city.numberOfHouses++;
   }
+}
 };
 
 const playerOwnsAllCitiesInProvince = (

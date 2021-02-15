@@ -1,4 +1,5 @@
 import { Player } from '../../models/player.model';
+import { GameModel } from "../../models/game.model";
 import { goToJail } from './baseCard.service';
 import {
   playerGetsMoney,
@@ -9,22 +10,23 @@ import {
   BONUS_SALARY,
 } from '../../constants/prices';
 
-export const badChampionEarn = (player: Player): void => {
+export const badChampionEarn = (game: GameModel): void => {
+  const player = game.activePlayer;
   if (player.isGoodChampion)
     playerLosesMoney(player, BAD_OR_GOOD_SALARY);
   else playerGetsMoney(player, BAD_OR_GOOD_SALARY);
 };
 
-export const goodChampionEarn = (player: Player): void => {
+export const goodChampionEarn = (game: GameModel): void => {
+  const player = game.activePlayer;
   if (player.isGoodChampion)
     playerGetsMoney(player, BAD_OR_GOOD_SALARY);
   else playerLosesMoney(player, BAD_OR_GOOD_SALARY);
 };
 
-export const earnAndSendSomeoneToJail = (
-  player: Player,
-  chosenPlayer: Player,
-): void => {
+//for now currentPlayer earns money
+export const earnAndSendSomeoneToJail = (game: GameModel): void => {
+  const player = game.activePlayer;
   playerGetsMoney(player, BONUS_SALARY);
-  goToJail(chosenPlayer);
+  // goToJail(game);
 };

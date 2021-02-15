@@ -1,4 +1,5 @@
 import { Player } from '../../models/player.model';
+import { GameModel } from "../../models/game.model";
 import { Messages, logMessage } from '../messasges.service';
 import {
   JAIL_FIELD,
@@ -17,7 +18,8 @@ export const playerPassedStart = (player: Player): void => {
   }
 };
 
-export const goToJail = (player: Player): void => {
+export const goToJail = (game: GameModel): void => {
+  const player = game.activePlayer;
   player.isJailed = true;
   player.blockedTurns = 2;
   player.moveToField(JAIL_FIELD);

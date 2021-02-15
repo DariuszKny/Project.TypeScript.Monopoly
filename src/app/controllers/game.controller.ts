@@ -13,6 +13,10 @@ import { PlayerService } from '../services/player.service';
 import { playerMove } from '../services/gameBoard.service';
 import { Disabler } from '../services/disabler.service';
 import { SettingsController } from './settings.controller';
+import { buyCard, obtainableCardActions, nonobtainableCardActions } from "../services/gameManager.service";
+import { ObtainableCard } from "../models/card.models/abstractCard.model";
+import { logMessage, Messages } from "../services/messasges.service";
+
 import { EndPageView } from '../views/endPage.view';
 
 export module GameController {
@@ -54,21 +58,53 @@ export module GameController {
     'click',
     function () {
       playerService.changeActivePlayer(game, rightMenuView);
-      disableEnable(
-        [mainBoardView.buttonNextPlayer],
-        [mainBoardView.buttonRoll],
-      );
+      if(game.activePlayer.isJailed){
+        logMessage(Messages.playerInJail(game.activePlayer));
+        game.activePlayer.blockedTurns--;
+        disableEnable([mainBoardView.buttonBuy, mainBoardView.buttonRoll],[mainBoardView.buttonNextPlayer]);
+      }
+      else{
+        disableEnable([mainBoardView.buttonNextPlayer, mainBoardView.buttonBuy],[mainBoardView.buttonRoll]);
+      }
     },
   );
 
   mainBoardView.buttonRoll.addEventListener('click', function () {
+    
     playerMove(game);
-    if (!game.activePlayer.canThrowDices)
-      disableEnable(
-        [mainBoardView.buttonRoll],
-        [mainBoardView.buttonNextPlayer],
-      );
-  });
+    const currentCard = game.gameBoard[game.activePlayer.currentPosition].card; 
+    console.log(game.activePlayer.currentPosition);
+    console.log(currentCard.id);
+    if (currentCard instanceof ObtainableCard){
+      console.log("jeeestem karta do kupienia");
+      if(!currentCard.isObtainable){
+        console.log("możesz kupić:false");
+        disableEnable([mainBoardView.buttonBuy],[]);
+        obtainableCardActions(game);
+      }
+      else{
+        console.log("możesz kupić: true");
+        disableEnable([], [mainBoardView.buttonBuy]);
+      }
+    }
+    else {
+      console.log("jeeestem  nie do kupienia");
+      disableEnable([mainBoardView.buttonBuy],[]);
+      nonobtainableCardActions(game);
+    }
+    if (!game.activePlayer.canThrowDices) disableEnable([mainBoardView.buttonRoll],[mainBoardView.buttonNextPlayer]);
+    rightMenuService.updatePlayersPanels(rightMenuView,game);
+    });
+
+  mainBoardView.buttonBuy.addEventListener('click', function() {
+    buyCard(game);
+    rightMenuService.updatePlayersPanels(rightMenuView,game);
+    disableEnable([mainBoardView.buttonBuy],[])
+  })
+
+
+
+
 
   gameOptionView.buttonPlay?.addEventListener('click', function () {
     navigationPages.settingsPage.style.display = 'none';
@@ -79,8 +115,8 @@ export module GameController {
     for (let player in game.players) {
       addPawn(game.players[player].id);
     }
-    rightMenuService.updatePlayersPanels(rightMenuView,game)
-    disableEnable([mainBoardView.buttonNextPlayer], []);
+    rightMenuService.updatePlayersPanels(rightMenuView,game);
+    disableEnable([mainBoardView.buttonNextPlayer, mainBoardView.buttonBuy], []);
     timerService.startTimer(gameSettings.time, game, leftMenuView, endGameView);
   });
 }
