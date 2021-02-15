@@ -7,7 +7,7 @@
   // display: flex;
   align-content: space-around;
   border: 8px solid black;
-  border-image: url("../images/border.png") 10% fill;
+  border-image: url('../images/border.png') 10% fill;
   background-color: #2f4353;
   background-image: linear-gradient(315deg, black 0%, black 74%);
   overflow: hidden;
@@ -19,49 +19,47 @@
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     gap: 0 0;
     grid-template-areas:
-            "field-21 field-22 field-23 field-24 field-25 field-26 field-27 field-28 field-29 field-30 field-31"
-            "field-20 board board board board board board board board board field-32"
-            "field-19 board board board board board board board board board field-33"
-            "field-18 board board board board board board board board board field-34"
-            "field-17 board board board board board board board board board field-35"
-            "field-16 board board board board board board board board board field-36"
-            "field-15 board board board board board board board board board field-37"
-            "field-14 board board board board board board board board board field-38"
-            "field-13 board board board board board board board board board field-39"
-            "field-12 board board board board board board board board board field-40"
-            "field-11 field-10 field-9 field-8 field-7 field-6 field-5 field-4 field-3 field-2 field-1";
-
+      'field-21 field-22 field-23 field-24 field-25 field-26 field-27 field-28 field-29 field-30 field-31'
+      'field-20 board board board board board board board board board field-32'
+      'field-19 board board board board board board board board board field-33'
+      'field-18 board board board board board board board board board field-34'
+      'field-17 board board board board board board board board board field-35'
+      'field-16 board board board board board board board board board field-36'
+      'field-15 board board board board board board board board board field-37'
+      'field-14 board board board board board board board board board field-38'
+      'field-13 board board board board board board board board board field-39'
+      'field-12 board board board board board board board board board field-40'
+      'field-11 field-10 field-9 field-8 field-7 field-6 field-5 field-4 field-3 field-2 field-1';
 
     .main-board {
       grid-area: board;
       border: 1px solid black;
-      background:  url("../images/middle.jpg") no-repeat;
+      background: url('../images/middle.jpg') no-repeat;
       background-size: cover;
       padding: 30px;
 
       .controls {
         display: flex;
 
+        .controls-main {
+          background-color: rgba(0, 0, 0, 0.5);
+          display: flex;
+          height: 50%;
+          width: 50%;
+          flex-direction: column;
+          align-items: center;
+          margin-bottom: 30px;
+          margin-right: 10px;
 
-      .controls-main {
-        background-color: rgba(0,0,0,0.5);
-        display: flex;
-        height: 50%;
-        width: 50%;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 30px;
-        margin-right: 10px;
-
-        .dice {
-          margin-top: 10px;
+          .dice {
+            margin-top: 10px;
+          }
+          .btn {
+            margin-top: 10px;
+            width: 100%;
+            margin-bottom: 20px;
+          }
         }
-        .btn {
-          margin-top: 10px;
-          width: 100%;
-          margin-bottom: 20px;
-        }
-      }
       }
 
       .controls-additional {
@@ -73,19 +71,18 @@
         font-size: 1rem;
         line-height: 2rem;
         letter-spacing: 0.15rem;
-        background-color: rgba(0,0,0,0.8);
+        background-color: rgba(0, 0, 0, 0.8);
         height: 40%;
         max-height: 40%;
         margin-top: 10px;
         overflow-y: hidden;
         overflow-x: hidden;
       }
-
     }
 
     .field-1 {
       grid-area: field-1;
-      background: url("/images/cards/0.png") no-repeat;
+      background: url('/images/cards/0.png') no-repeat;
       background-size: cover;
     }
     .field-2 {
@@ -117,7 +114,7 @@
     }
     .field-11 {
       grid-area: field-11;
-      background: url("/images/cards/10.png") no-repeat;
+      background: url('/images/cards/10.png') no-repeat;
       background-size: cover;
     }
     .field-12 {
@@ -149,7 +146,7 @@
     }
     .field-21 {
       grid-area: field-21;
-      background: url("/images/cards/30.png") no-repeat;
+      background: url('/images/cards/30.png') no-repeat;
       background-size: cover;
     }
     .field-22 {
@@ -181,7 +178,7 @@
     }
     .field-31 {
       grid-area: field-31;
-      background: url("/images/cards/30.png") no-repeat;
+      background: url('/images/cards/30.png') no-repeat;
       background-size: cover;
     }
     .field-32 {
@@ -219,7 +216,7 @@
       display: flex;
       flex-direction: column;
       &:hover {
-       background-color: rosybrown;
+        background-color: rosybrown;
       }
 
       .green {
@@ -246,10 +243,7 @@
       .blue {
         background-color: deepskyblue;
       }
-
     }
-
-
 
     .field-col {
       height: 120px;
@@ -259,7 +253,7 @@
       .pawns-container {
         height: 80%;
         display: grid;
-        grid-template-columns:repeat(2,1fr) ;
+        grid-template-columns: repeat(2, 1fr);
         padding-top: 10px;
         margin-top: 2px;
 
@@ -286,7 +280,7 @@
       .pawns-container {
         width: 80%;
         display: grid;
-        grid-template-columns:repeat(2,1fr) ;
+        grid-template-columns: repeat(2, 1fr);
         padding-left: 10px;
         margin-top: 2px;
 
@@ -296,8 +290,5 @@
         }
       }
     }
-
   }
-
-
 }
