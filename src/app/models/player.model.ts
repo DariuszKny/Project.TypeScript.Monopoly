@@ -1,32 +1,26 @@
 import { NUMBER_OF_FIELDS, START_FIELD } from "../constants/gameConstants"
+import { START_SALARY } from "../constants/prices";
 import { playerPassedStart } from "../services/card.services/baseCard.service";
 import { movePawnOnBoard } from "../services/pawn.service";
 
 export class Player {
     readonly _id: number;
+    readonly _name: string;
+    readonly _isGoodChampion: boolean;
     readonly _color: string;
-    private currentPosition: number;
-    private previousPosition: number;
-    private name: string;
-    readonly goodChampion: boolean;
-    private money: number;
-    private cards: number[] = [];
-    private isJailed: boolean;
-    private double: number;
-    private canThrowDices: boolean;
-    private blockedTurns: number;
+    private _currentPosition: number = START_FIELD;
+    private _previousPosition: number = START_FIELD;
+    private _money: number = START_SALARY;
+    private _cards: number[] = [];
+    private _numberOfDoubles: number = 0;
+    private _canThrowDices: boolean = true;
+    private _isJailed = false;
+    private _blockedTurns: number = 0;
 
-    public constructor(id: number, name: string, goodChampion: boolean){
+    public constructor(id: number, name: string, isGoodChampion: boolean){
         this._id = id
-        this.currentPosition = START_FIELD;
-        this.previousPosition = START_FIELD;
-        this.name = name;
-        this.goodChampion = goodChampion;
-        this.money = 1500;
-        this.isJailed = false;
-        this.double = 0;
-        this.canThrowDices = true;
-        this.blockedTurns = 0;
+        this._name = name;
+        this._isGoodChampion = isGoodChampion;
         switch(this._id) {
           case 0:
             this._color = 'RED';
@@ -48,107 +42,103 @@ export class Player {
     public get id(): number {
         return this._id;
     }
+ 
+    public get playerName(): string {
+      return this._name;
+  }
 
     public get color(): string {
         return this._color;
     }
 
-    public get playerCurrentPosition() : number {
-        return this.currentPosition;
+    public get currentPosition() : number {
+        return this._currentPosition;
     }
 
-    public set playerCurrentPosition(position : number) {
-        this.currentPosition = position;
+    public set currentPosition(position : number) {
+        this._currentPosition = position;
     }
 
-    public get playerPreviousPosition() : number {
-      return this.previousPosition;
+    public get previousPosition() : number {
+      return this._previousPosition;
     }
 
-    public set playerPreviousPosition(position : number) {
-        this.previousPosition = position;
+    public set previousPosition(position : number) {
+        this._previousPosition = position;
     }
 
-    public get playerName() : string {
-        return this.name;
-    }
-
-    public set playerName(name : string) {
-        this.name = name;
-    }
-
-    public get playerMoney() : number {
-        return this.money;
+    public get money() : number {
+        return this._money;
     }
     
-    public set playerMoney(money : number) {
-        this.money = money;
+    public set money(money : number) {
+        this._money = money;
     }
         
-    public get playerCards() : number[] {
-        return this.cards;
+    public get cards() : number[] {
+        return this._cards;
     }
     
-    public set playerCards(cards : number[]) {
-        this.cards = [...cards];
+    public set cards(cards : number[]) {
+        this._cards = [...cards];
     }
     
-    public get playerIsJailed() : boolean {
-        return this.isJailed;
+    public get isJailed() : boolean {
+        return this._isJailed;
     }
 
-    public set playerIsJailed(isJailed : boolean) {
-        this.isJailed = isJailed;
+    public set isJailed(isJailed : boolean) {
+        this._isJailed = isJailed;
     }
 
-    public get playerDouble() : number {
-        return this.double;
+    public get numberOfDoubles() : number {
+        return this._numberOfDoubles;
     }
 
-    public set playerDouble(double : number) {
-        this.double = double;
+    public set numberOfDoubles(numberOfDoubles : number) {
+        this._numberOfDoubles = numberOfDoubles;
     }
 
-    public get playerCanThrowDices() : boolean {
-        return this.canThrowDices;
+    public get canThrowDices() : boolean {
+        return this._canThrowDices;
     }
 
-    public set playerCanThrowDices(canThrowDices : boolean) {
-        this.canThrowDices = canThrowDices;
+    public set canThrowDices(canThrowDices : boolean) {
+        this._canThrowDices = canThrowDices;
     }
 
-    public get playerBlockedTurns() : number {
-        return this.blockedTurns;
+    public get blockedTurns() : number {
+        return this._blockedTurns;
     }
 
-    public set playerBlockedTurns(blockedTurns : number) {
-        this.blockedTurns = blockedTurns;
+    public set blockedTurns(blockedTurns : number) {
+        this._blockedTurns = blockedTurns;
     }
 
     takeMoney(amount : number) {
-        this.playerMoney = this.playerMoney + amount;
+        this._money = this._money + amount;
     }
 
     giveMoney(amount : number) {
-        if(this.playerMoney > amount) this.playerMoney = this.playerMoney - amount;
+        if(this._money > amount) this._money = this._money - amount;
         else console.log("You don't have enough money");
     }
 
     moveNumberOfFields(numberOfFields: number) {
-      // if(this.blockedTurns > 0) {
+      // if(this._blockedTurns > 0) {
       //   console.log(`You are in Jail, you have to wait ${this.blockedTurns} turns`);
-      //   this.blockedTurns--;
+      //   this._blockedTurns--;
       //   return;
       // }
-      this.previousPosition = this.currentPosition;
-      this.currentPosition = (this.currentPosition + numberOfFields) % NUMBER_OF_FIELDS;
+      this._previousPosition = this._currentPosition;
+      this._currentPosition = (this._currentPosition + numberOfFields) % NUMBER_OF_FIELDS;
       movePawnOnBoard(this);
       playerPassedStart(this);
     }
 
     moveToField(fieldNumber: number) {
-      this.previousPosition = this.currentPosition;
-      this.currentPosition = fieldNumber;
+      this._previousPosition = this._currentPosition;
+      this._currentPosition = fieldNumber;
       movePawnOnBoard(this);
       playerPassedStart(this);
     }

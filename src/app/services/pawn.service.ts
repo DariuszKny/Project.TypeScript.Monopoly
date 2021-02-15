@@ -15,7 +15,7 @@ export function addPawn(index: number) {
 }
 
 export const movePawnOnBoard = function (player: Player) {
-  const positonOnBoard: number = player.playerCurrentPosition;
+  const positonOnBoard: number = player.currentPosition;
   const images = require('../../../images/pawns/*.png');
   const nextField = document.querySelector(`#f${positonOnBoard} > .pawns-container `)!;
   const pawn = document.querySelector<HTMLElement>(`#${player.color}`)!;

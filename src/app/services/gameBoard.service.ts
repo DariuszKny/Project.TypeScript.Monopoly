@@ -24,8 +24,8 @@ import { playerGetsMoney } from "./card.services/sharedCard.service";
 export type gameField = {card: Card, action?: unknown};
 
 export const playerMove = function (game: GameModel) {
-  if(game.activePlayer.playerDouble <= 2) throwDiceAndMovePlayer(game);
-  if(game.activePlayer.playerDouble === 3) goToJail(game.activePlayer);
+  if(game.activePlayer.numberOfDoubles <= 2) throwDiceAndMovePlayer(game);
+  if(game.activePlayer.numberOfDoubles === 3) goToJail(game.activePlayer);
 
   // if (game.activePlayer.playerDouble === 3)
   //         player1.playerCurrentPosition = 11;

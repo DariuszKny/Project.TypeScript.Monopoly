@@ -27,7 +27,7 @@ export const numberOfOwnedCards = (player: Player, cards: number[]): number => {
 }
 
 export const playerOwnsCard = (player: Player, cardId: number): boolean => {
-  return player.playerCards.includes(cardId)
+  return player.cards.includes(cardId)
 }
 
 export const playerLosesMoney = (player: Player, money: number): void => {
