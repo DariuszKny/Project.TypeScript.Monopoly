@@ -16,7 +16,7 @@ import { SettingsController } from './settings.controller';
 import { buyCard, obtainableCardActions, nonobtainableCardActions } from "../services/gameManager.service";
 import { ObtainableCard } from "../models/card.models/abstractCard.model";
 import { logMessage, Messages } from "../services/messasges.service";
-
+import { isPlayerInJail } from "../services/card.services/baseCard.service";
 import { EndPageView } from '../views/endPage.view';
 
 export module GameController {
@@ -58,14 +58,11 @@ export module GameController {
     'click',
     function () {
       playerService.changeActivePlayer(game, rightMenuView);
-      if(game.activePlayer.isJailed){
-        logMessage(Messages.playerInJail(game.activePlayer));
-        game.activePlayer.blockedTurns--;
+      isPlayerInJail(game);
+      if(game.activePlayer.isJailed) 
         disableEnable([mainBoardView.buttonBuy, mainBoardView.buttonRoll],[mainBoardView.buttonNextPlayer]);
-      }
-      else{
+      else
         disableEnable([mainBoardView.buttonNextPlayer, mainBoardView.buttonBuy],[mainBoardView.buttonRoll]);
-      }
     },
   );
 
