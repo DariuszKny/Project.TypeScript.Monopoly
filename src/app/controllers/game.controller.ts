@@ -11,8 +11,9 @@ import {Player} from "../models/player.model";
 import {addPawn} from "../services/add-pawn.service";
 import {NavigationPagesView} from "../views/navigationPages.view";
 import {PlayerService} from "../services/player.service";
-import {playerMove} from "../services/game-board.service";
+import {playerMove, throwDiceAndMovePlayer} from "../services/game-board.service";
 import {Disabler} from "../services/disabler.service";
+import {goToJail} from "../services/card.services/base-card.service"
 
 export module GameController {
     import disableEnable = Disabler.disableEnable;
@@ -50,7 +51,7 @@ export module GameController {
 
     mainBoardView.buttonRoll.addEventListener('click',function () {
         playerMove(game);
-        disableEnable([mainBoardView.buttonRoll],[mainBoardView.buttonNextPlayer])
+        if(game.activePlayer.playerAreDiceRolled) disableEnable([mainBoardView.buttonRoll],[mainBoardView.buttonNextPlayer])
     })
 
     gameOptionView.buttonPlay?.addEventListener('click', function () {
