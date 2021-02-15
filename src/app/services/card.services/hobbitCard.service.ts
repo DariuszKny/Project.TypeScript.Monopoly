@@ -1,4 +1,5 @@
 import { Player } from '../../models/player.model';
+import { GameModel } from "../../models/game.model";
 import { HobbitCard } from '../../models/card.models/hobbitCard.model';
 import {
   playerOwnsCard,
@@ -12,15 +13,17 @@ import {
   LOWER_RENT_MULTIPLIER,
 } from '../../constants/gameConstants';
 
-export const payHobbitTax = (
-  player: Player,
-  players: Player[],
-  hobbit: HobbitCard,
-): void => {
+export const payHobbitTax = (game: GameModel): void => {
+  const player = game.activePlayer;
+  const players = game.players;
+  const currentCard = game.gameBoard[game.activePlayer.currentPosition].card;
+  if(currentCard instanceof HobbitCard){
+    const hobbit = currentCard;
   if (hobbit.isObtainable) return; //if city wasnt bought by anyone
   if (playerOwnsCard(player, hobbit.id)) return;
   let hobbitOwner = findCardOwner(players, hobbit.id);
   payMoneyToCardOwner(player, hobbitOwner, HOBBIT_TAX);
+  }
 };
 
 export const getPriceDiscount = (player: Player): number => {
