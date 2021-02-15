@@ -16,7 +16,15 @@ export module TimerService {
     let timer = setInterval(function () {
       if (time != 0) {
         time = time - 1;
-        showTime(time, leftMenuView);
+        let hours = Math.floor(time/3600);
+        let secondsLeft = time%3600;
+        let minutes = Math.floor(secondsLeft/60);
+        secondsLeft = secondsLeft%60;
+        let timeLeft = [hours,minutes,secondsLeft]
+          .map(v => v < 10 ? "0" + v : v)
+          .filter((v,i) => v !== "00" || i > 0)
+          .join(":");
+        showTime(timeLeft, leftMenuView);
         endGameCash(game.players, endPageView);
       } else {
         endGameTime(game.players, endPageView);
@@ -42,7 +50,6 @@ export module TimerService {
   const endGameCash = function (players: Player[], endPageView: EndPageView) {
 
     let counter = 0;
-    console.log(counter)
     let winner = [];
     for (let i = 0; i < players.length; i++) {
       if (players[i].money !== 0) {
@@ -65,7 +72,7 @@ export module TimerService {
   };
 
   const showTime = function (
-    time: number,
+    time: string,
     leftMenuView: LeftMenuView,
   ) {
     leftMenuView.time.innerHTML = `${time}`;
