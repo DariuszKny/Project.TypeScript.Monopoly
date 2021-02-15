@@ -1,6 +1,5 @@
 import {Player} from "./player.model";
 import {gameBoard, gameField} from "../services/gameBoard.service"
-import {PlayerService} from "../services/player.service"
 
 export class GameModel {
     private _players: Player[] = [];

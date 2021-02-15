@@ -7,11 +7,10 @@ import {gameOptionModel} from "../models/gameOption.model";
 import {MainBoardView} from "../views/mainBoard.view";
 import {GameOptionView} from "../views/gameOption.view";
 import {TimerService} from "../services/timer.service";
-import {Player} from "../models/player.model";
 import {addPawn} from "../services/pawn.service";
 import {NavigationPagesView} from "../views/navigationPages.view";
 import {PlayerService} from "../services/player.service";
-import {playerMove, throwDiceAndMovePlayer} from "../services/gameBoard.service";
+import {playerMove} from "../services/gameBoard.service";
 import {Disabler} from "../services/disabler.service";
 import {SettingsController} from "./settings.controller";
 
