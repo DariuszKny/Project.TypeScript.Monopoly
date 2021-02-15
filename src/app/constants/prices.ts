@@ -1,3 +1,4 @@
+export const START_SALARY = 1500;
 export const PASSING_START_SALARY = 400;
 export const BAD_OR_GOOD_SALARY = 100;
 export const BONUS_SALARY = 100;

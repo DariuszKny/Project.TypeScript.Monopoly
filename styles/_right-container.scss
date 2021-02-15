@@ -20,7 +20,7 @@
 
   .players {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
     text-align: center;
     margin-top: 5px;
     color: darkgoldenrod;
@@ -34,7 +34,7 @@
       img {
         width: 75%;
       }
-      p{
+      p {
         font-size: 28px;
         font-weight: bold;
       }
@@ -51,8 +51,8 @@
 
   .cards-container {
     display: grid;
-    grid-template-columns: repeat(5,1fr);
-    grid-gap: 1px ;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 1px;
     align-content: center;
     overflow: scroll;
 

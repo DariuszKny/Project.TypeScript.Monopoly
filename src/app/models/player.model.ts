@@ -1,155 +1,157 @@
-import { NUMBER_OF_FIELDS, START_FIELD } from "../constants/game-constants"
-import { playerPassedStart } from "../services/card.services/base-card.service";
-import { movePawnOnBoard } from "../services/add-pawn.service";
+import {
+  NUMBER_OF_FIELDS,
+  START_FIELD,
+} from '../constants/gameConstants';
+import { START_SALARY } from '../constants/prices';
+import { playerPassedStart } from '../services/card.services/baseCard.service';
+import { movePawnOnBoard } from '../services/pawn.service';
 
 export class Player {
-    readonly _id: number;
-    readonly _color: string;
-    private currentPosition: number;
-    private previousPosition: number;
-    private name: string;
-    readonly goodChampion: boolean;
-    private money: number;
-    private cards: number[] = [];
-    private isJailed: boolean;
-    private double: number;
-    private canThrowDices: boolean;
-    private blockedTurns: number;
+  readonly _id: number;
+  readonly _name: string;
+  readonly _isGoodChampion: boolean;
+  readonly _color: string;
+  private _currentPosition: number = START_FIELD;
+  private _previousPosition: number = START_FIELD;
+  private _money: number = START_SALARY;
+  private _cards: number[] = [];
+  private _numberOfDoubles: number = 0;
+  private _canThrowDices: boolean = true;
+  private _isJailed = false;
+  private _blockedTurns: number = 0;
 
-    public constructor(id: number, name: string, goodChampion: boolean){
-        this._id = id
-        this.currentPosition = START_FIELD;
-        this.previousPosition = START_FIELD;
-        this.name = name;
-        this.goodChampion = goodChampion;
-        this.money = 1500;
-        this.isJailed = false;
-        this.double = 0;
-        this.canThrowDices = true;
-        this.blockedTurns = 0;
-        switch(this._id) {
-          case 0:
-            this._color = 'RED';
-            break;
-          case 1:
-            this._color = 'BLUE';
-            break;
-          case 2:
-            this._color = 'GREEN';
-            break;
-          case 3:
-            this._color = 'YELLOW';
-            break;
-          default:
-            this._color = 'GREEN';
-        }
-      }
+  public constructor(
+    id: number,
+    name: string,
+    isGoodChampion: boolean,
+  ) {
+    this._id = id;
+    this._name = name;
+    this._isGoodChampion = isGoodChampion;
+    switch (this._id) {
+      case 0:
+        this._color = 'RED';
+        break;
+      case 1:
+        this._color = 'BLUE';
+        break;
+      case 2:
+        this._color = 'GREEN';
+        break;
+      case 3:
+        this._color = 'YELLOW';
+        break;
+      default:
+        this._color = 'GREEN';
+    }
+  }
 
-    public get id(): number {
-        return this._id;
-    }
+  public get id(): number {
+    return this._id;
+  }
 
-    public get color(): string {
-        return this._color;
-    }
+  public get name(): string {
+    return this._name;
+  }
 
-    public get playerCurrentPosition() : number {
-        return this.currentPosition;
-    }
+  public get isGoodChampion(): boolean {
+    return this._isGoodChampion;
+  }
 
-    public set playerCurrentPosition(position : number) {
-        this.currentPosition = position;
-    }
+  public get color(): string {
+    return this._color;
+  }
 
-    public get playerPreviousPosition() : number {
-      return this.previousPosition;
-    }
+  public get currentPosition(): number {
+    return this._currentPosition;
+  }
 
-    public set playerPreviousPosition(position : number) {
-        this.previousPosition = position;
-    }
+  public set currentPosition(position: number) {
+    this._currentPosition = position;
+  }
 
-    public get playerName() : string {
-        return this.name;
-    }
+  public get previousPosition(): number {
+    return this._previousPosition;
+  }
 
-    public set playerName(name : string) {
-        this.name = name;
-    }
+  public set previousPosition(position: number) {
+    this._previousPosition = position;
+  }
 
-    public get playerMoney() : number {
-        return this.money;
-    }
-    
-    public set playerMoney(money : number) {
-        this.money = money;
-    }
-        
-    public get playerCards() : number[] {
-        return this.cards;
-    }
-    
-    public set playerCards(cards : number[]) {
-        this.cards = [...cards];
-    }
-    
-    public get playerIsJailed() : boolean {
-        return this.isJailed;
-    }
+  public get money(): number {
+    return this._money;
+  }
 
-    public set playerIsJailed(isJailed : boolean) {
-        this.isJailed = isJailed;
-    }
+  public set money(money: number) {
+    this._money = money;
+  }
 
-    public get playerDouble() : number {
-        return this.double;
-    }
+  public get cards(): number[] {
+    return this._cards;
+  }
 
-    public set playerDouble(double : number) {
-        this.double = double;
-    }
+  public set cards(cards: number[]) {
+    this._cards = [...cards];
+  }
 
-    public get playerCanThrowDices() : boolean {
-        return this.canThrowDices;
-    }
+  public get numberOfDoubles(): number {
+    return this._numberOfDoubles;
+  }
 
-    public set playerCanThrowDices(canThrowDices : boolean) {
-        this.canThrowDices = canThrowDices;
-    }
+  public set numberOfDoubles(numberOfDoubles: number) {
+    this._numberOfDoubles = numberOfDoubles;
+  }
 
-    public get playerBlockedTurns() : number {
-        return this.blockedTurns;
-    }
+  public get canThrowDices(): boolean {
+    return this._canThrowDices;
+  }
 
-    public set playerBlockedTurns(blockedTurns : number) {
-        this.blockedTurns = blockedTurns;
-    }
+  public set canThrowDices(canThrowDices: boolean) {
+    this._canThrowDices = canThrowDices;
+  }
 
-    takeMoney(amount : number) {
-        this.playerMoney = this.playerMoney + amount;
-    }
+  public get isJailed(): boolean {
+    return this._isJailed;
+  }
 
-    giveMoney(amount : number) {
-        if(this.playerMoney > amount) this.playerMoney = this.playerMoney - amount;
-        else console.log("You don't have enough money");
-    }
+  public set isJailed(isJailed: boolean) {
+    this._isJailed = isJailed;
+  }
 
-    moveNumberOfFields(numberOfFields: number) {
-      // if(this.blockedTurns > 0) {
-      //   console.log(`You are in Jail, you have to wait ${this.blockedTurns} turns`);
-      //   this.blockedTurns--;
-      //   return;
-      // }
-      this.previousPosition = this.currentPosition;
-      this.currentPosition = (this.currentPosition + numberOfFields) % NUMBER_OF_FIELDS;
-      movePawnOnBoard(this);
-      playerPassedStart(this);
-    }
+  public get blockedTurns(): number {
+    return this._blockedTurns;
+  }
 
-    moveToField(fieldNumber: number) {
-      this.previousPosition = this.currentPosition;
-      this.currentPosition = fieldNumber;
-      movePawnOnBoard(this);
-      playerPassedStart(this);
-    }
+  public set blockedTurns(blockedTurns: number) {
+    this._blockedTurns = blockedTurns;
+  }
+
+  takeMoney(amount: number) {
+    this._money = this._money + amount;
+  }
+
+  giveMoney(amount: number) {
+    if (this._money > amount) this._money = this._money - amount;
+    else console.log("You don't have enough money");
+  }
+
+  moveNumberOfFields(numberOfFields: number) {
+    // if(this._blockedTurns > 0) {
+    //   console.log(`You are in Jail, you have to wait ${this.blockedTurns} turns`);
+    //   this._blockedTurns--;
+    //   return;
+    // }
+    this._previousPosition = this._currentPosition;
+    this._currentPosition =
+      (this._currentPosition + numberOfFields) % NUMBER_OF_FIELDS;
+    movePawnOnBoard(this);
+    playerPassedStart(this);
+  }
+
+  moveToField(fieldNumber: number) {
+    this._previousPosition = this._currentPosition;
+    this._currentPosition = fieldNumber;
+    movePawnOnBoard(this);
+    playerPassedStart(this);
+  }
 }

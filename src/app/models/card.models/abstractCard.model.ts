@@ -2,7 +2,7 @@ export abstract class Card {
   constructor(
     readonly id: number,
     readonly name: string,
-    readonly description: string,  
+    readonly description: string,
   ) {}
 }
 
@@ -11,10 +11,10 @@ export abstract class ObtainableCard extends Card {
   constructor(
     readonly id: number,
     readonly name: string,
-    readonly description: string, 
-    readonly price: number 
+    readonly description: string,
+    readonly price: number,
   ) {
-    super(id, name, description)
+    super(id, name, description);
   }
 
   get isObtainable(): boolean {
@@ -24,5 +24,4 @@ export abstract class ObtainableCard extends Card {
   set isObtainable(isObtainable: boolean) {
     this._isObtainable = isObtainable;
   }
-
 }

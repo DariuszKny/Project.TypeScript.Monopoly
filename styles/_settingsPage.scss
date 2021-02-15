@@ -1,8 +1,6 @@
-
-
 .settingsPage {
   display: none;
-  background: url("../images/settings.jpg") no-repeat center ;
+  background: url('../images/settings.jpg') no-repeat center;
   background-size: cover;
   height: 100vh;
 
@@ -11,14 +9,12 @@
     color: white;
   }
 
-
-  .settingsPlayer{
-    background-color: rgba(0,0,0,0.3);
+  .settingsPlayer {
+    background-color: rgba(0, 0, 0, 0.3);
     padding: 20px;
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
     margin: 10% auto;
-
 
     .playerInput {
       margin-top: 20px;
@@ -27,7 +23,7 @@
 
       text-align: center;
       label {
-        background-color: rgba(0,0,0,0.5);
+        background-color: rgba(0, 0, 0, 0.5);
         margin-top: 5px;
         font-size: 30px;
       }
@@ -42,9 +38,9 @@
     }
   }
 
-  .settingsTime{
+  .settingsTime {
     display: none;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0, 0, 0, 0.3);
     padding: 20px;
     flex-direction: column;
     margin: 17% auto;
@@ -55,12 +51,11 @@
       grid-template-columns: repeat(2, 1fr);
       text-align: center;
 
-
       .selected-time {
         color: goldenrod;
         font-size: 45px;
         font-weight: bold;
-        background-color: rgba(0,0,0,0.5);
+        background-color: rgba(0, 0, 0, 0.5);
 
         &:hover {
           cursor: pointer;
@@ -68,31 +63,27 @@
         }
       }
     }
-
-
   }
 
-  .settingsChampions{
+  .settingsChampions {
     display: none;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0, 0, 0, 0.3);
     padding: 20px;
     flex-direction: column;
     margin: auto auto;
     text-align: center;
 
-      .champion-container {
-        margin-top: 80px;
-        img {
-          height: 400px;
-          padding-right: 20px;
+    .champion-container {
+      margin-top: 80px;
+      img {
+        height: 400px;
+        padding-right: 20px;
 
-          &:hover {
-            cursor: pointer;
-            border-bottom: 5px solid goldenrod;
-          }
+        &:hover {
+          cursor: pointer;
+          border-bottom: 5px solid goldenrod;
         }
       }
+    }
   }
-
-
 }

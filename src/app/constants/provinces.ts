@@ -4,9 +4,9 @@ export enum Province {
   ERIADOR,
   HITHAEGLIR,
   ROHAN,
-  CALENARDHON, 
+  CALENARDHON,
   GONDOR,
-  MORDOR
+  MORDOR,
 }
 
 export const SHIRE_CITIES = [1, 4];
