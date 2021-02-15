@@ -15,14 +15,9 @@ import { Disabler } from '../services/disabler.service';
 import { SettingsController } from './settings.controller';
 import { buyCard, obtainableCardActions, nonobtainableCardActions } from "../services/gameManager.service";
 import { ObtainableCard } from "../models/card.models/abstractCard.model";
-import { BaseCard } from '../models/card.models/baseCard.model';
-import { CityCard } from '../models/card.models/cityCard.model';
-import { TrapCard } from '../models/card.models/trapCard.model';
-import { FateCard } from '../models/card.models/fateCard.model';
-import { HobbitCard } from '../models/card.models/hobbitCard.model';
-import { ArtifactCard } from '../models/card.models/artifactCard.model';
 import { logMessage, Messages } from "../services/messasges.service";
 
+import { EndPageView } from '../views/endPage.view';
 
 export module GameController {
   import disableEnable = Disabler.disableEnable;
@@ -36,6 +31,7 @@ export module GameController {
   const timerService = TimerService;
   const navigationPages = new NavigationPagesView();
   const playerService = PlayerService;
+  const endGameView = new EndPageView();
 
   const gameOption = new gameOptionModel();
 
@@ -119,8 +115,8 @@ export module GameController {
     for (let player in game.players) {
       addPawn(game.players[player].id);
     }
-    rightMenuService.updatePlayersPanels(rightMenuView,game)
+    rightMenuService.updatePlayersPanels(rightMenuView,game);
     disableEnable([mainBoardView.buttonNextPlayer, mainBoardView.buttonBuy], []);
-    timerService.startTimer(gameSettings.time, game, leftMenuView);
+    timerService.startTimer(gameSettings.time, game, leftMenuView, endGameView);
   });
 }
