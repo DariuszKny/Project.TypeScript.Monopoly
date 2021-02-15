@@ -1,5 +1,5 @@
 import { Player } from "../models/player.model";
-import { ObtainableCard } from "../models/card.models/abstract-card.model";
+import { ObtainableCard } from "../models/card.models/abstractCard.model";
 import { PASSING_START_SALARY } from "../constants/prices";
 
 export const logMessage = (message: string): void => {

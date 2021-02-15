@@ -1,16 +1,16 @@
-import { Card } from "../models/card.models/abstract-card.model";
-import { BaseCard } from "../models/card.models/base-card.model";
-import { CityCard } from "../models/card.models/city-card.model";
-import { TrapCard } from "../models/card.models/trap-card.model";
-import { FateCard } from "../models/card.models/fate-card.model";
-import { ArtifactCard } from "../models/card.models/artifact-card.model";
-import { HobbitCard } from "../models/card.models/hobbit-card.model";
-import { goToJail } from "./card.services/base-card.service";
-import { payRent, buyHouse } from "./card.services/city-card.service";
-import { loseMoneyAndMoveBackward, loseMoneyAndMoveForward } from "./card.services/trap-card.service";
-import { goodChampionEarn, badChampionEarn, earnAndSendSomeoneToJail} from "./card.services/fate-card.service";
-import { payArtifactTax } from "./card.services/artifact-card.service";
-import { payHobbitTax } from "./card.services/hobbit-card.service";
+import { Card } from "../models/card.models/abstractCard.model";
+import { BaseCard } from "../models/card.models/baseCard.model";
+import { CityCard } from "../models/card.models/cityCard.model";
+import { TrapCard } from "../models/card.models/trapCard.model";
+import { FateCard } from "../models/card.models/fateCard.model";
+import { ArtifactCard } from "../models/card.models/artifactCard.model";
+import { HobbitCard } from "../models/card.models/hobbitCard.model";
+import { goToJail } from "./card.services/baseCard.service";
+import { payRent, buyHouse } from "./card.services/cityCard.service";
+import { loseMoneyAndMoveBackward, loseMoneyAndMoveForward } from "./card.services/trapCard.service";
+import { goodChampionEarn, badChampionEarn, earnAndSendSomeoneToJail} from "./card.services/fateCard.service";
+import { payArtifactTax } from "./card.services/artifactCard.service";
+import { payHobbitTax } from "./card.services/hobbitCard.service";
 import { Province } from "../constants/provinces";
 import * as rent from "../constants/prices";
 import {throwDice, doubleCheck} from "./dice.service";
@@ -18,7 +18,7 @@ import {Player} from "../models/player.model";
 import { PlayerService} from "./player.service" 
 import {GameModel} from "../models/game.model";
 import { Messages, logMessage} from "./messasges.service";
-import { playerGetsMoney } from "./card.services/shared-card.service";
+import { playerGetsMoney } from "./card.services/sharedCard.service";
 
 
 export type gameField = {card: Card, action?: unknown};

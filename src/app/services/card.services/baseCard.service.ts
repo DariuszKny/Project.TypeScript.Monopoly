@@ -1,6 +1,6 @@
 import { Player } from "../../models/player.model";
 import { Messages, logMessage } from "../messasges.service";
-import { JAIL_FIELD, START_FIELD } from "../../constants/game-constants";
+import { JAIL_FIELD, START_FIELD } from "../../constants/gameConstants";
 import { PASSING_START_SALARY } from "../../constants/prices";
 
 export const playerPassedStart = (player: Player): void => {

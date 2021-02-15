@@ -11,7 +11,7 @@ import {Player} from "../models/player.model";
 import {addPawn} from "../services/pawn.service";
 import {NavigationPagesView} from "../views/navigationPages.view";
 import {PlayerService} from "../services/player.service";
-import {playerMove, throwDiceAndMovePlayer} from "../services/game-board.service";
+import {playerMove, throwDiceAndMovePlayer} from "../services/gameBoard.service";
 import {Disabler} from "../services/disabler.service";
 import {SettingsController} from "./settings.controller";
 

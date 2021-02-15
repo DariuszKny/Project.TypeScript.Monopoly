@@ -1,6 +1,6 @@
 import { Player } from "../../models/player.model";
-import { CityCard } from "../../models/card.models/city-card.model";
-import { playerOwnsCard, findCardOwner, numberOfOwnedCards, payMoneyToCardOwner } from "./shared-card.service";
+import { CityCard } from "../../models/card.models/cityCard.model";
+import { playerOwnsCard, findCardOwner, numberOfOwnedCards, payMoneyToCardOwner } from "./sharedCard.service";
 import * as provinces from "../../constants/provinces";
 
 export const payRent = (player: Player, players: Player[], city: CityCard): void => {

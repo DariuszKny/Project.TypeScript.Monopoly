@@ -1,5 +1,5 @@
 import { Player } from "../../models/player.model";
-import { getPriceDiscount } from "./hobbit-card.service";
+import { getPriceDiscount } from "./hobbitCard.service";
 import { Messages, logMessage } from "../messasges.service";
 
 export const payMoneyToCardOwner = (player: Player, owner: Player, money: number): void  => {

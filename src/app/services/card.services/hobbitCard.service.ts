@@ -1,8 +1,8 @@
 import { Player } from "../../models/player.model";
-import { HobbitCard } from "../../models/card.models/hobbit-card.model";
-import { playerOwnsCard, findCardOwner, payMoneyToCardOwner, numberOfOwnedCards } from "./shared-card.service";
+import { HobbitCard } from "../../models/card.models/hobbitCard.model";
+import { playerOwnsCard, findCardOwner, payMoneyToCardOwner, numberOfOwnedCards } from "./sharedCard.service";
 import { HOBBIT_TAX } from "../../constants/prices";
-import { HOBBIT_CARDS_IDS, LOWER_RENT_MULTIPLIER } from "../../constants/game-constants";
+import { HOBBIT_CARDS_IDS, LOWER_RENT_MULTIPLIER } from "../../constants/gameConstants";
 
 export const payHobbitTax = (player: Player, players: Player[], hobbit: HobbitCard): void => {
   if(hobbit.isObtainable) return;                                //if city wasnt bought by anyone

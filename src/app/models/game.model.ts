@@ -1,5 +1,5 @@
 import {Player} from "./player.model";
-import {gameBoard, gameField} from "../services/game-board.service"
+import {gameBoard, gameField} from "../services/gameBoard.service"
 import {PlayerService} from "../services/player.service"
 
 export class GameModel {

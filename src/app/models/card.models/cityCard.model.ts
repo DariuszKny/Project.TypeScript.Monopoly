@@ -1,4 +1,4 @@
-import { ObtainableCard } from "./abstract-card.model";
+import { ObtainableCard } from "./abstractCard.model";
 import { Province } from "../../constants/provinces"
 
 export class CityCard extends ObtainableCard {

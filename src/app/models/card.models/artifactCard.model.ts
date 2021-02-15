@@ -1,4 +1,4 @@
-import { ObtainableCard } from "./abstract-card.model";
+import { ObtainableCard } from "./abstractCard.model";
 import { ARTIFACT_TAX } from "../../constants/prices";
 
 export class ArtifactCard extends ObtainableCard {

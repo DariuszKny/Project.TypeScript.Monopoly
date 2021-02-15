@@ -1,6 +1,6 @@
 import { Player } from "../../models/player.model";
-import { goToJail } from "./base-card.service";
-import { playerGetsMoney, playerLosesMoney } from "./shared-card.service";
+import { goToJail } from "./baseCard.service";
+import { playerGetsMoney, playerLosesMoney } from "./sharedCard.service";
 import { BAD_OR_GOOD_SALARY, BONUS_SALARY } from "../../constants/prices";
 
 export const badChampionEarn = (player: Player): void => {

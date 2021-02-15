@@ -1,5 +1,5 @@
-import { NUMBER_OF_FIELDS, START_FIELD } from "../constants/game-constants"
-import { playerPassedStart } from "../services/card.services/base-card.service";
+import { NUMBER_OF_FIELDS, START_FIELD } from "../constants/gameConstants"
+import { playerPassedStart } from "../services/card.services/baseCard.service";
 import { movePawnOnBoard } from "../services/pawn.service";
 
 export class Player {
