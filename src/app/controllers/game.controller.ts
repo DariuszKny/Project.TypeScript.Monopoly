@@ -43,6 +43,7 @@ export module GameController {
         player,
         rightMenuView,
         leftMenuView.preview,
+          game
       );
     });
   });
@@ -76,9 +77,8 @@ export module GameController {
     for (let player in game.players) {
       addPawn(game.players[player].id);
     }
+    rightMenuService.updatePlayersPanels(rightMenuView,game)
     disableEnable([mainBoardView.buttonNextPlayer], []);
     timerService.startTimer(gameSettings.time, game, leftMenuView);
-    console.log(game.players);
-    console.log(game.activePlayer);
   });
 }
