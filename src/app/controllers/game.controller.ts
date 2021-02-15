@@ -35,7 +35,7 @@ export module GameController {
 
   leftMenuView.fields?.forEach((field) => {
     field.addEventListener('click', function () {
-      leftMenuService.showPreview(leftMenuView.preview, field);
+      leftMenuService.showPreview(leftMenuView, field);
     });
   });
 
@@ -44,7 +44,8 @@ export module GameController {
       rightMenuService.showCards(
         player,
         rightMenuView,
-        leftMenuView.preview,
+        leftMenuView,
+          game
       );
     });
   });
@@ -78,9 +79,8 @@ export module GameController {
     for (let player in game.players) {
       addPawn(game.players[player].id);
     }
+    rightMenuService.updatePlayersPanels(rightMenuView,game)
     disableEnable([mainBoardView.buttonNextPlayer], []);
     timerService.startTimer(gameSettings.time, game, leftMenuView, endGameView);
-    console.log(game.players);
-    console.log(game.activePlayer);
   });
 }

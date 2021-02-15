@@ -3,4 +3,6 @@ export class RightMenuView {
   container = document.querySelector(
     '.cards-container',
   )! as HTMLImageElement;
+
+
 }
