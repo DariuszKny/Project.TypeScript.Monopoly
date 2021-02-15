@@ -8,7 +8,7 @@ export function throwDice(currentPlayer: Player) {
     dice[1] = Math.floor(Math.random() * 6) + 1;
     dice[2] = dice[0] + dice[1];
 
-    currentPlayer.playerAreDiceRolled = true;
+    currentPlayer.playerCanThrowDices = false;
 
     return dice;
 

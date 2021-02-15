@@ -51,7 +51,7 @@ export module GameController {
 
     mainBoardView.buttonRoll.addEventListener('click',function () {
         playerMove(game);
-        if(game.activePlayer.playerAreDiceRolled) disableEnable([mainBoardView.buttonRoll],[mainBoardView.buttonNextPlayer])
+        if(!game.activePlayer.playerCanThrowDices) disableEnable([mainBoardView.buttonRoll],[mainBoardView.buttonNextPlayer])
     })
 
     gameOptionView.buttonPlay?.addEventListener('click', function () {

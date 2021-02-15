@@ -13,7 +13,7 @@ export class Player {
     private cards: number[] = [];
     private isJailed: boolean;
     private double: number;
-    private areDiceRolled: boolean;
+    private canThrowDices: boolean;
     private blockedTurns: number;
 
     public constructor(id: number, name: string, goodChampion: boolean){
@@ -25,7 +25,7 @@ export class Player {
         this.money = 1500;
         this.isJailed = false;
         this.double = 0;
-        this.areDiceRolled = false;
+        this.canThrowDices = true;
         this.blockedTurns = 0;
         switch(this._id) {
           case 0:
@@ -109,12 +109,12 @@ export class Player {
         this.double = double;
     }
 
-    public get playerAreDiceRolled() : boolean {
-        return this.areDiceRolled;
+    public get playerCanThrowDices() : boolean {
+        return this.canThrowDices;
     }
 
-    public set playerAreDiceRolled(areDiceRolled : boolean) {
-        this.areDiceRolled = areDiceRolled;
+    public set playerCanThrowDices(canThrowDices : boolean) {
+        this.canThrowDices = canThrowDices;
     }
 
     public get playerBlockedTurns() : number {
