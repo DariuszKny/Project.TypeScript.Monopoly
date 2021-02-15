@@ -33,7 +33,7 @@ export module GameController {
 
   leftMenuView.fields?.forEach((field) => {
     field.addEventListener('click', function () {
-      leftMenuService.showPreview(leftMenuView.preview, field);
+      leftMenuService.showPreview(leftMenuView, field);
     });
   });
 
@@ -42,7 +42,7 @@ export module GameController {
       rightMenuService.showCards(
         player,
         rightMenuView,
-        leftMenuView.preview,
+        leftMenuView,
           game
       );
     });

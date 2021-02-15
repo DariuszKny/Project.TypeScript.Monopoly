@@ -3,6 +3,7 @@ import {LeftMenuService} from './leftMenu.service';
 import {RightMenuView} from '../views/rightMenu.view';
 import {GameModel} from "../models/game.model";
 import {Hero} from "../models/hero.enum";
+import {LeftMenuView} from "../views/leftMenu.view";
 
 export module RightMenuService {
   const leftMenuService = LeftMenuService;
@@ -11,13 +12,12 @@ export module RightMenuService {
   export let showCards = function (
     player: Element,
     rightMenuView: RightMenuView,
-    preview: HTMLImageElement,
+    leftMenuView: LeftMenuView,
     game: GameModel
   ): void {
     rightMenuView.container.innerHTML = '';
     let playerId: string = player.id;
     let hero = playerId.slice(1);
-    console.log(hero)
     let champion = game.players.find(
       (player:Player) => player.id === parseInt(hero),
     );
@@ -26,13 +26,14 @@ export module RightMenuService {
       // @ts-ignore
       image.src = images[`f${card}`];
       image.addEventListener('click', function () {
-        leftMenuService.showPlayerCard(preview, `f${card}`);
+        leftMenuService.showPlayerCard(leftMenuView, `f${card}`);
       });
       rightMenuView.container.appendChild(image);
     });
   };
 
   export let updatePlayersPanels = function (rightMenuView: RightMenuView,game:GameModel) {
+    console.log("WORKED")
     let playerPanels = rightMenuView.fields;
     playerPanels.forEach(panel => {
       let player = game.players[parseInt(panel.id.slice(1))]
