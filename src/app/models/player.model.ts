@@ -29,16 +29,16 @@ export class Player {
         this.blockedTurns = 0;
         switch(this._id) {
           case 0:
-            this._color = 'BLUE';
+            this._color = 'RED';
             break;
           case 1:
-            this._color = 'GREEN';
+            this._color = 'BLUE';
             break;
           case 2:
-            this._color = 'YELLOW';
+            this._color = 'GREEN';
             break;
           case 3:
-            this._color = 'RED';
+            this._color = 'YELLOW';
             break;
           default:
             this._color = 'GREEN';
