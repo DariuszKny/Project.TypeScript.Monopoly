@@ -8,7 +8,7 @@ import {MainBoardView} from "../views/mainBoard.view";
 import {GameOptionView} from "../views/gameOption.view";
 import {TimerService} from "../services/timer.service";
 import {Player} from "../models/player.model";
-import {addPawn} from "../services/add-pawn.service";
+import {addPawn} from "../services/pawn.service";
 import {NavigationPagesView} from "../views/navigationPages.view";
 import {PlayerService} from "../services/player.service";
 import {playerMove, throwDiceAndMovePlayer} from "../services/game-board.service";

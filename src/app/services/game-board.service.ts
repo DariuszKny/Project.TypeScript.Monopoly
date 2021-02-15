@@ -13,8 +13,7 @@ import { payArtifactTax } from "./card.services/artifact-card.service";
 import { payHobbitTax } from "./card.services/hobbit-card.service";
 import { Province } from "../constants/provinces";
 import * as rent from "../constants/prices";
-import {throwDice} from "../models/dice.model";
-import {doubleCheck} from "../controllers/double-check.controller";
+import {throwDice, doubleCheck} from "./dice.service";
 import {Player} from "../models/player.model";
 import { PlayerService} from "./player.service" 
 import {GameModel} from "../models/game.model";

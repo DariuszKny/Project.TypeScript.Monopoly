@@ -1,6 +1,6 @@
 import { NUMBER_OF_FIELDS, START_FIELD } from "../constants/game-constants"
 import { playerPassedStart } from "../services/card.services/base-card.service";
-import { movePawnOnBoard } from "../services/add-pawn.service";
+import { movePawnOnBoard } from "../services/pawn.service";
 
 export class Player {
     readonly _id: number;
