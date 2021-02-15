@@ -5,6 +5,7 @@ import {
 import { START_SALARY } from '../constants/prices';
 import { playerPassedStart } from '../services/card.services/baseCard.service';
 import { movePawnOnBoard } from '../services/pawn.service';
+import {Hero} from "./hero.enum";
 
 export class Player {
   readonly _id: number;
@@ -19,15 +20,18 @@ export class Player {
   private _canThrowDices: boolean = true;
   private _isJailed = false;
   private _blockedTurns: number = 0;
+  private _hero: Hero;
 
   public constructor(
     id: number,
     name: string,
     isGoodChampion: boolean,
+    hero: Hero,
   ) {
     this._id = id;
     this._name = name;
     this._isGoodChampion = isGoodChampion;
+    this._hero = hero;
     switch (this._id) {
       case 0:
         this._color = 'RED';
@@ -52,6 +56,15 @@ export class Player {
 
   public get name(): string {
     return this._name;
+  }
+
+
+  get hero(): Hero {
+    return this._hero;
+  }
+
+  set hero(value: Hero) {
+    this._hero = value;
   }
 
   public get isGoodChampion(): boolean {
