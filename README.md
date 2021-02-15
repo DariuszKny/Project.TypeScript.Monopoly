@@ -3,7 +3,7 @@
 # Coders Camp 2020 | Projekt Zespołowy | Typescript
 
 * [Zespół projektowy](#zespół-projektowy)
-* [Lord of The Rings Monopoly](#Lord of The Rings Monopoly)
+* [Lord of The Rings Monopoly](#Lord-of-The-Rings-Monopoly)
     + [Demo](#demo)
     + [Cel projektu](#cel-projektu)
     + [Działanie aplikacji](#działanie-aplikacji)
