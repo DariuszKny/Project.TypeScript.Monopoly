@@ -30,7 +30,7 @@ export module Messages {
     player: Player,
     card: ObtainableCard,
   ): string => {
-    return `${player.name} bought ${card.name}`;
+    return `${player.name} bought ${card.name} for ${card.price}$`;
   };
 
   export const playerPaidMoneyToOwner = (
@@ -85,7 +85,7 @@ export module Messages {
   }
 
   export const playerInJail = (player: Player): string => {
-    return `${player.name} is in Jail, has to wait ${player.blockedTurns}`;
+    return `${player.name} is in Jail, has to wait ${player.blockedTurns} turns`;
   };
 
 

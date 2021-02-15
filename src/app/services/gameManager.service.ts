@@ -19,6 +19,7 @@ import {
 } from './card.services/fateCard.service';
 import { payArtifactTax } from './card.services/artifactCard.service';
 import { payHobbitTax } from './card.services/hobbitCard.service';
+import { logMessage, Messages } from "../services/messasges.service";
 
 export const buyCard = (game: GameModel) => {
   const currentCard = game.gameBoard[game.activePlayer.currentPosition].card;
@@ -26,6 +27,7 @@ export const buyCard = (game: GameModel) => {
     currentCard.isObtainable = false;
     game.activePlayer.giveMoney(currentCard.price);
     game.activePlayer.cards.push(currentCard.id);
+    logMessage(Messages.playerBoughtCard(game.activePlayer, currentCard));
   }
 }
 
