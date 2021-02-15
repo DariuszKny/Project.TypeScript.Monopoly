@@ -17,7 +17,7 @@ export module RightMenuService {
     let chempion = champions.find(
       (player) => player.id === parseInt(hero),
     );
-    chempion?.playerCards.forEach((card) => {
+    chempion?.cards.forEach((card) => {
       let image = document.createElement('img');
       // @ts-ignore
       image.src = images[`f${card}`];
@@ -31,11 +31,11 @@ export module RightMenuService {
 
 ////FOR DEV ONLY
 let champ1 = new Player(0, 'Daro', true);
-champ1.playerCards = [1, 4, 5];
+champ1.cards = [1, 4, 5];
 let champ2 = new Player(1, 'Daro', true);
-champ2.playerCards = [6, 7, 9];
+champ2.cards = [6, 7, 9];
 let champ3 = new Player(2, 'Daro', true);
-champ3.playerCards = [11, 12, 15];
+champ3.cards = [11, 12, 15];
 let champ4 = new Player(3, 'Daro', true);
-champ4.playerCards = [17, 18, 19];
+champ4.cards = [17, 18, 19];
 let champions = [champ1, champ2, champ3, champ4];
