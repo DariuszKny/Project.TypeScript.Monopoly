@@ -1,0 +1,98 @@
+
+
+.settingsPage {
+  display: none;
+  background: url("../images/settings.jpg") no-repeat center ;
+  background-size: cover;
+  height: 100vh;
+
+  h2 {
+    font-size: 40px;
+    color: white;
+  }
+
+
+  .settingsPlayer{
+    background-color: rgba(0,0,0,0.3);
+    padding: 20px;
+  display: flex;
+  flex-direction: column;
+    margin: 10% auto;
+
+
+    .playerInput {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+
+      text-align: center;
+      label {
+        background-color: rgba(0,0,0,0.5);
+        margin-top: 5px;
+        font-size: 30px;
+      }
+      input {
+        text-align: center;
+        margin-top: 5px;
+        font-size: 30px;
+      }
+    }
+    button {
+      margin: 20px 20px;
+    }
+  }
+
+  .settingsTime{
+    display: none;
+    background-color: rgba(0,0,0,0.3);
+    padding: 20px;
+    flex-direction: column;
+    margin: 17% auto;
+
+    .time-container {
+      display: grid;
+      margin: 20px 20px;
+      grid-template-columns: repeat(2, 1fr);
+      text-align: center;
+
+
+      .selected-time {
+        color: goldenrod;
+        font-size: 45px;
+        font-weight: bold;
+        background-color: rgba(0,0,0,0.5);
+
+        &:hover {
+          cursor: pointer;
+          color: gold;
+        }
+      }
+    }
+
+
+  }
+
+  .settingsChampions{
+    display: none;
+    background-color: rgba(0,0,0,0.3);
+    padding: 20px;
+    flex-direction: column;
+    margin: auto auto;
+    text-align: center;
+
+      .champion-container {
+        margin-top: 80px;
+        img {
+          height: 400px;
+          padding-right: 20px;
+
+          &:hover {
+            cursor: pointer;
+            border-bottom: 5px solid goldenrod;
+          }
+        }
+      }
+  }
+
+
+}
