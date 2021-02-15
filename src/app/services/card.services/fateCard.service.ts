@@ -24,9 +24,9 @@ export const goodChampionEarn = (game: GameModel): void => {
   else playerLosesMoney(player, BAD_OR_GOOD_SALARY);
 };
 
-//for now currentPlayer earns money and goes to Jail
+//for now currentPlayer earns money
 export const earnAndSendSomeoneToJail = (game: GameModel): void => {
   const player = game.activePlayer;
   playerGetsMoney(player, BONUS_SALARY);
-  goToJail(game);
+  // goToJail(game);
 };

@@ -6,6 +6,7 @@ import { START_SALARY } from '../constants/prices';
 import { playerPassedStart } from '../services/card.services/baseCard.service';
 import { movePawnOnBoard } from '../services/pawn.service';
 import {Hero} from "./hero.enum";
+import { logMessage, Messages } from "../services/messasges.service";
 
 export class Player {
   readonly _id: number;
@@ -149,11 +150,6 @@ export class Player {
   }
 
   moveNumberOfFields(numberOfFields: number) {
-    // if(this._blockedTurns > 0) {
-    //   console.log(`You are in Jail, you have to wait ${this.blockedTurns} turns`);
-    //   this._blockedTurns--;
-    //   return;
-    // }
     this._previousPosition = this._currentPosition;
     this._currentPosition =
       (this._currentPosition + numberOfFields) % NUMBER_OF_FIELDS;

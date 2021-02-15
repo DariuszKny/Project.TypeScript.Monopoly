@@ -7,12 +7,12 @@ import { PLAYER_IS_ATTACKED_STEPS, PLAYER_IS_CHASED_STEPS } from '../../constant
 
 export const loseMoneyAndMoveBackward = (game: GameModel): void => {
   const player = game.activePlayer;
-  loseMoneyAndMove(player, TRAP_TAX, PLAYER_IS_CHASED_STEPS);
+  loseMoneyAndMove(player, TRAP_TAX, PLAYER_IS_ATTACKED_STEPS);
 };
 
 export const loseMoneyAndMoveForward = (game: GameModel): void => {
   const player = game.activePlayer;
-  loseMoneyAndMove(player, TRAP_TAX, PLAYER_IS_ATTACKED_STEPS);
+  loseMoneyAndMove(player, TRAP_TAX, PLAYER_IS_CHASED_STEPS);
 };
 
 const loseMoneyAndMove = (

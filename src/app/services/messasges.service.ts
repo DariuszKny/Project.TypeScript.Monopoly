@@ -80,6 +80,12 @@ export module Messages {
     return `${player.name} went to Jail and lost 2 turns`;
   };
 
+
+  export const playerInJail = (player: Player): string => {
+    return `${player.name} is in Jail, has to wait ${player.blockedTurns}`;
+  };
+
+
   export const playerWentBankrupt = (player: Player): string => {
     return `${player.name} has gone bankrupt`;
   };
