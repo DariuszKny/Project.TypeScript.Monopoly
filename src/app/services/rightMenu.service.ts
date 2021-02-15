@@ -1,6 +1,8 @@
-import { Player } from '../models/player.model';
-import { LeftMenuService } from './leftMenu.service';
-import { RightMenuView } from '../views/rightMenu.view';
+import {Player} from '../models/player.model';
+import {LeftMenuService} from './leftMenu.service';
+import {RightMenuView} from '../views/rightMenu.view';
+import {GameModel} from "../models/game.model";
+import {Hero} from "../models/hero.enum";
 
 export module RightMenuService {
   const leftMenuService = LeftMenuService;
@@ -10,14 +12,16 @@ export module RightMenuService {
     player: Element,
     rightMenuView: RightMenuView,
     preview: HTMLImageElement,
+    game: GameModel
   ): void {
     rightMenuView.container.innerHTML = '';
     let playerId: string = player.id;
     let hero = playerId.slice(1);
-    let chempion = champions.find(
-      (player) => player.id === parseInt(hero),
+    console.log(hero)
+    let champion = game.players.find(
+      (player:Player) => player.id === parseInt(hero),
     );
-    chempion?.cards.forEach((card) => {
+    champion?.cards.forEach((card) => {
       let image = document.createElement('img');
       // @ts-ignore
       image.src = images[`f${card}`];
@@ -27,15 +31,45 @@ export module RightMenuService {
       rightMenuView.container.appendChild(image);
     });
   };
+
+  export let updatePlayersPanels = function (rightMenuView: RightMenuView,game:GameModel) {
+    let playerPanels = rightMenuView.fields;
+    playerPanels.forEach(panel => {
+      let player = game.players[parseInt(panel.id.slice(1))]
+      if(player) {
+        let playerName = panel.getElementsByTagName('h3')!;
+        let playerScore = panel.getElementsByTagName('p')!;
+        let playerIcon = panel.getElementsByTagName('img')!;
+
+        playerName[0].innerText = player.name;
+        playerScore[0].innerText = player.money + " $";
+        let source = getIcon(player);
+        playerIcon[0].src = source;
+      }
+    })
+  }
+
+  let getIcon = function (player:Player) {
+    let source:string;
+      switch (player.hero) {
+        case Hero.Aragorn: {
+          source = require("../../../images/champions/Aragorn-icon.png")
+          break;
+        }
+        case Hero.Gandalf: {
+          source = require("../../../images/champions/Gandalf-ICON.png")
+          break;
+        }
+        case Hero.Saruman: {
+          source = require("../../../images/champions/Saruman-ICON.png")
+          break;
+        }
+        case Hero.Sauron: {
+          source = require("../../../images/champions/Sauron-ICON.png")
+        }
+      }
+      return source;
+  }
+
 }
 
-////FOR DEV ONLY
-let champ1 = new Player(0, 'Daro', true);
-champ1.cards = [1, 4, 5];
-let champ2 = new Player(1, 'Daro', true);
-champ2.cards = [6, 7, 9];
-let champ3 = new Player(2, 'Daro', true);
-champ3.cards = [11, 12, 15];
-let champ4 = new Player(3, 'Daro', true);
-champ4.cards = [17, 18, 19];
-let champions = [champ1, champ2, champ3, champ4];
