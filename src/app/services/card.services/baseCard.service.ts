@@ -9,10 +9,7 @@ import { PASSING_START_SALARY } from '../../constants/prices';
 
 export const playerPassedStart = (player: Player): void => {
   if (player.isJailed) return;
-  if (
-    player.currentPosition > START_FIELD &&
-    player.previousPosition > player.currentPosition
-  ) {
+  if(player.previousPosition > player.currentPosition) {
     player.takeMoney(PASSING_START_SALARY);
     logMessage(Messages.playerPassedStart(player));
   }
