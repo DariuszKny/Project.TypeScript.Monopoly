@@ -35,6 +35,10 @@ export module Messages {
     return `${player.name} can buy this card for ${card.price}$`;
   };
 
+  export const playerLost = (player: Player): string => {
+    return `${player.name} already lost and can not move, next player ...`
+  }
+
   export const playerBoughtCard = (
     player: Player,
     card: ObtainableCard,
