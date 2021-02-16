@@ -48,7 +48,7 @@ export module GameController {
   rightMenuView.fields?.forEach((player) => {
     player.addEventListener('click', function () {
       rightMenuService.showCards(
-        player,
+        parseInt(player.id.slice(1)),
         rightMenuView,
         leftMenuView,
           game
@@ -60,6 +60,7 @@ export module GameController {
     'click',
     function () {
       playerService.changeActivePlayer(game, rightMenuView);
+      rightMenuService.showCards(game.activePlayer.id,rightMenuView,leftMenuView,game)
       isPlayerInJail(game);
       if(game.activePlayer.isJailed) 
         disableEnable([mainBoardView.buttonBuy, mainBoardView.buttonRoll],[mainBoardView.buttonNextPlayer]);
@@ -74,10 +75,12 @@ export module GameController {
     console.log(game.activePlayer.currentPosition);
     console.log(currentCard.id);
       if(currentCard instanceof ObtainableCard && canPlayerBuyCard(game)){
+        mainBoardView.buttonBuy.innerHTML = "Buy Card"
         logMessage(Messages.playerCanBuyCard(game.activePlayer, currentCard));
         disableEnable([], [mainBoardView.buttonBuy]);
       }
       else if(currentCard instanceof CityCard && canPlayerBuyHouse(game)){
+        mainBoardView.buttonBuy.innerHTML = "Upgrade"
         logMessage(Messages.playerCanBuyHouse(game.activePlayer, currentCard));
         disableEnable([], [mainBoardView.buttonBuy]);
       }
@@ -90,8 +93,8 @@ export module GameController {
     });
 
   mainBoardView.buttonBuy.addEventListener('click', function() {
-    if(canPlayerBuyCard(game)) buyCard(game);
-    else if (canPlayerBuyHouse(game)) buyHouse(game);
+    if(canPlayerBuyCard(game)) buyCard(game, leftMenuView,rightMenuView);
+    else if (canPlayerBuyHouse(game)) buyHouse(game, leftMenuView,rightMenuView);
     rightMenuService.updatePlayersPanels(rightMenuView,game);
     disableEnable([mainBoardView.buttonBuy],[])
   })

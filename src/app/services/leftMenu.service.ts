@@ -7,6 +7,7 @@ import {GameModel} from "../models/game.model";
 import {ObtainableCard} from "../models/card.models/abstractCard.model";
 import {HOBBIT_TAX} from "../constants/prices";
 import {HobbitCard} from "../models/card.models/hobbitCard.model";
+import {Province} from "../constants/provinces";
 
 export module LeftMenuService {
     export let showPreview = function (
@@ -47,35 +48,35 @@ export module LeftMenuService {
             let card = field.card;
             cardInfo.innerHTML =
                 `<h2>id: ${card.id}</h2>` +
-                `<h2>name: ${card.name}</h2>` +
-                `<h2>description: ${card.description}</h2>`
+                `<h2>name: ${card.name}</h2>`;
+
+            cardInfo.innerHTML += card instanceof CityCard ? `<h2>Province: ${Province[card.province].toLocaleLowerCase()}</h2>` :  `<h2>description: ${card.description}</h2>`
 
             if (card instanceof ArtifactCard) {
-                cardInfo.innerHTML =
-                    cardInfo.innerHTML + `<h2>Tax: ${card.tax}</h2>`
+                cardInfo.innerHTML += `<h2>Tax: ${card.tax}</h2>`
             }
 
             if (card instanceof HobbitCard) {
-                cardInfo.innerHTML =
-                    cardInfo.innerHTML + `<h2>Tax: ${HOBBIT_TAX}</h2>`
+                cardInfo.innerHTML += `<h2>Tax: ${HOBBIT_TAX}</h2>`
             }
             if (card instanceof CityCard) {
-
-                cardInfo.innerHTML =
-                    cardInfo.innerHTML + `<h2>Price: ${card.price} $</h2> ` +
-                    `<h2>Taxes: ${card.rent} </h2>` +
-                    `<h2>Towers: lv ${card.numberOfHouses}</h2>`
-
+                cardInfo.innerHTML +=
+                    `<h2>Taxes: ${card.rent} </h2>`
             }
 
             if(card instanceof ObtainableCard) {
                 let player = findCardOwner(game.players,card.id)
+                cardInfo.innerHTML +=  `<h2></br></h2> `
                 if(player) {
-                    cardInfo.innerHTML = cardInfo.innerHTML + `<h2>Owner: ${player.name}</h2> `
+                    cardInfo.innerHTML +=  `<h2>Owner: ${player.name}</h2> `
                 } else {
-                    cardInfo.innerHTML = cardInfo.innerHTML + `<h2>Owner: </h2>`
+                    cardInfo.innerHTML +=  `<h2>Owner: </h2>`
                 }
+                cardInfo.innerHTML += `<h2>Price: ${card.price} $</h2> `
             }
+            if(card instanceof CityCard) cardInfo.innerHTML +=
+                `<h2>Towers: lv ${card.numberOfHouses}</h2>` +
+                `<h2>Upgrade Cost: ${card.priceOfHouses} $</h2> `
         }
 
     };

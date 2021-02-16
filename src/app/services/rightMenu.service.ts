@@ -6,31 +6,30 @@ import {Hero} from "../models/hero.enum";
 import {LeftMenuView} from "../views/leftMenu.view";
 
 export module RightMenuService {
-  const leftMenuService = LeftMenuService;
-  const images = leftMenuService.images;
+
 
   export let showCards = function (
-    player: Element,
+    playerID: number,
     rightMenuView: RightMenuView,
     leftMenuView: LeftMenuView,
     game: GameModel
   ): void {
+    let images = LeftMenuService.images;
     rightMenuView.container.innerHTML = '';
-    let playerId: string = player.id;
-    let hero = playerId.slice(1);
     let champion = game.players.find(
-      (player:Player) => player.id === parseInt(hero),
+      (player:Player) => player.id === playerID,
     );
     champion?.cards.forEach((card) => {
       let image = document.createElement('img');
       // @ts-ignore
       image.src = images[`f${card}`];
       image.addEventListener('click', function () {
-        leftMenuService.showPlayerCard(game,leftMenuView, `f${card}`);
+        LeftMenuService.showPlayerCard(game,leftMenuView, `f${card}`);
 
       });
       rightMenuView.container.appendChild(image);
     });
+    if(champion) rightMenuView.containerLabel.innerHTML = `${champion.name}'s Cards`
   };
 
   export let updatePlayersPanels = function (rightMenuView: RightMenuView,game:GameModel) {
