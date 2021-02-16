@@ -73,10 +73,10 @@ export module Messages {
     amount: number,
   ): string => {
     let direction: string = 'forward';
+    let plural: string = '';
     if (amount < 0) direction = 'backward';
-    return `${player.name} moved ${Math.abs(
-      amount,
-    )} fields ${direction}`;
+    if (Math.abs(amount) > 1) plural = 's';
+    return `${player.name} moved ${Math.abs(amount)} field${plural} ${direction}`;
   };
 
   export const playerPassedStart = (player: Player): string => {
@@ -92,7 +92,9 @@ export module Messages {
   }
 
   export const playerInJail = (player: Player): string => {
-    return `${player.name} is in Jail, has to wait ${player.blockedTurns} turns`;
+    let plural: string = '';
+    if (player.blockedTurns > 1) plural = 's';
+    return `${player.name} is in Jail, has to wait ${player.blockedTurns} turn${plural}`;
   };
 
 
