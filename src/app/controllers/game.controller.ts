@@ -10,7 +10,7 @@ import { TimerService } from '../services/timer.service';
 import { addPawn } from '../services/pawn.service';
 import { NavigationPagesView } from '../views/navigationPages.view';
 import { PlayerService } from '../services/player.service';
-import { playerMove } from '../services/gameBoard.service';
+import {gameBoard, playerMove} from '../services/gameBoard.service';
 import { Disabler } from '../services/disabler.service';
 import { SettingsController } from './settings.controller';
 import { buyCard, canPlayerBuyCard, canPlayerBuyHouse, cardActions} from "../services/gameManager.service";
