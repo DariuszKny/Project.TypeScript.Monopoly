@@ -45,6 +45,7 @@ export const obtainableCardActions = (game: GameModel) => {
   }
 }
 
+
 export const nonobtainableCardActions = (game: GameModel) => {
   const currentCard = game.gameBoard[game.activePlayer.currentPosition].card;
     if(currentCard instanceof TrapCard){

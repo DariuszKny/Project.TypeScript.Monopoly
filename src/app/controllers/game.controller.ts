@@ -67,7 +67,6 @@ export module GameController {
   );
 
   mainBoardView.buttonRoll.addEventListener('click', function () {
-    
     playerMove(game);
     const currentCard = game.gameBoard[game.activePlayer.currentPosition].card; 
     console.log(game.activePlayer.currentPosition);
@@ -81,6 +80,7 @@ export module GameController {
       }
       else{
         console.log("możesz kupić: true");
+        logMessage(Messages.playerCanBuyCard(game.activePlayer, currentCard))
         disableEnable([], [mainBoardView.buttonBuy]);
       }
     }

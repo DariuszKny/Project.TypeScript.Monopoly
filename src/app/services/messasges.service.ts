@@ -26,11 +26,18 @@ export module Messages {
     return `${player.name} rolled a ${firstDiceResult} and a ${secondDiceResult}`;
   };
 
+  export const playerCanBuyCard = (
+    player: Player,
+    card: ObtainableCard,
+  ): string => {
+    return `${player.name} can buy this card for ${card.price}$`;
+  };
+
   export const playerBoughtCard = (
     player: Player,
     card: ObtainableCard,
   ): string => {
-    return `${player.name} bought ${card.name} for ${card.price}$`;
+    return `${player.name} bought ${card.name}`;
   };
 
   export const playerPaidMoneyToOwner = (
