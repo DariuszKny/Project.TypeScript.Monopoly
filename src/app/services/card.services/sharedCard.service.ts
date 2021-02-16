@@ -15,7 +15,7 @@ export const payMoneyToCardOwner = (
     Messages.playerPaidMoneyToOwner(
       player,
       owner,
-      money,
+      moneyToPay,
       priceDiscount,
     ),
   );
