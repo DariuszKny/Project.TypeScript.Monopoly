@@ -97,7 +97,7 @@ export const cardActions = (game: GameModel) => {
       }
     }
     else if(currentCard instanceof BaseCard){
-      if(currentCard.id === GO_TO_JAIL_FIELD) goToJail(game);
+      if(currentCard.id === GO_TO_JAIL_FIELD) goToJail(game.activePlayer);
     }
   }
 }
