@@ -161,6 +161,5 @@ export class Player {
     this._previousPosition = this._currentPosition;
     this._currentPosition = fieldNumber;
     movePawnOnBoard(this);
-    playerPassedStart(this);
   }
 }
