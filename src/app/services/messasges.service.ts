@@ -128,5 +128,9 @@ export module Messages {
     if (player.blockedTurns > 1) plural = 's';
     return `${player.name} is in Jail, has to wait ${player.blockedTurns} turn${plural}`;
   };
+
+  export const playerSentToJail = (currentPlayer: Player, chosenPlayer: Player): string => {
+    return `${currentPlayer.name} sent ${chosenPlayer.name} to Jail`;
+  }
 }
 

@@ -9,6 +9,7 @@ import {
   BAD_OR_GOOD_SALARY,
   BONUS_SALARY,
 } from '../../constants/prices';
+import { logMessage, Messages } from '../messasges.service';
 
 export const badChampionEarn = (game: GameModel): void => {
   const player = game.activePlayer;
@@ -24,9 +25,13 @@ export const goodChampionEarn = (game: GameModel): void => {
   else playerLosesMoney(player, BAD_OR_GOOD_SALARY);
 };
 
-//for now currentPlayer earns money
+//for now currentPlayer earns money and someone is sent to jail
 export const earnAndSendSomeoneToJail = (game: GameModel): void => {
-  const player = game.activePlayer;
-  playerGetsMoney(player, BONUS_SALARY);
-  // goToJail(game);
+  const currentPlayer = game.activePlayer;
+  const currentCard = game.gameBoard[game.activePlayer.currentPosition].card;
+  playerGetsMoney(currentPlayer, BONUS_SALARY);
+  const otherPlayers = game.players.filter(player => player.id !== currentPlayer.id);
+  const randomlySelectedPlayer = otherPlayers[Math.floor(Math.random() * otherPlayers.length)];
+  logMessage(Messages.playerSentToJail(currentPlayer, randomlySelectedPlayer));
+  goToJail(randomlySelectedPlayer);
 };

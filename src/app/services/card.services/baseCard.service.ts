@@ -15,8 +15,7 @@ export const playerPassedStart = (player: Player): void => {
   }
 };
 
-export const goToJail = (game: GameModel): void => {
-  const player = game.activePlayer;
+export const goToJail = (player: Player): void => {
   player.isJailed = true;
   player.blockedTurns = 2;
   player.moveToField(JAIL_FIELD);
