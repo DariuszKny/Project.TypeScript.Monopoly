@@ -2,36 +2,42 @@ import {LeftMenuView} from "../views/leftMenu.view";
 import {gameBoard} from "./gameBoard.service";
 import {ArtifactCard} from "../models/card.models/artifactCard.model";
 import {CityCard} from "../models/card.models/cityCard.model";
+import {findCardOwner} from "./card.services/sharedCard.service";
+import {GameModel} from "../models/game.model";
+import {ObtainableCard} from "../models/card.models/abstractCard.model";
+import {HOBBIT_TAX} from "../constants/prices";
+import {HobbitCard} from "../models/card.models/hobbitCard.model";
 
 export module LeftMenuService {
     export let showPreview = function (
+        game: GameModel,
         leftMenuView: LeftMenuView,
-        field: Element,
+        id: number,
     ): void {
-        let fieldId: string = field.id;
-        console.log(fieldId);
+        let fieldId: number = id;
         if (
-            fieldId == 'f0' ||
-            fieldId == 'f10' ||
-            fieldId == 'f20' ||
-            fieldId == 'f30'
+            fieldId == 0 ||
+            fieldId == 10 ||
+            fieldId == 20 ||
+            fieldId == 30
         ) {
             return;
         } else {
-            leftMenuView.preview.src = images[`${fieldId}`];
-            showCardInfo(leftMenuView, parseInt(fieldId.slice(1)))
+            leftMenuView.preview.src = images[`f${fieldId}`];
+            showCardInfo(game,leftMenuView, id)
         }
     };
 
     export let showPlayerCard = function (
+        game: GameModel,
         leftMenuView: LeftMenuView,
         id: string,
     ): void {
-        showCardInfo(leftMenuView, parseInt(id));
+        showCardInfo(game,leftMenuView, parseInt(id.slice(1)));
         leftMenuView.preview.src = images[`${id}`];
     };
 
-    export let showCardInfo = function (leftMenuView: LeftMenuView, id: number) {
+    export let showCardInfo = function (game: GameModel, leftMenuView: LeftMenuView, id: number) {
         let cardInfo = leftMenuView.cardInfo!
         let field = gameBoard.find((field) => {
             return field.card.id === id;
@@ -48,12 +54,27 @@ export module LeftMenuService {
                 cardInfo.innerHTML =
                     cardInfo.innerHTML + `<h2>Tax: ${card.tax}</h2>`
             }
-            if (card instanceof CityCard) {
+
+            if (card instanceof HobbitCard) {
                 cardInfo.innerHTML =
-                    cardInfo.innerHTML + `<h2>Price: ${card.price}</h2>` +
-                    `<h2>Cost: ${card.rent}</h2>` +
-                    `<h2>Towers: ${card.numberOfHouses}</h2>` +
-                    `<h2>Owner: TU BEDZIE OWNER</h2>`
+                    cardInfo.innerHTML + `<h2>Tax: ${HOBBIT_TAX}</h2>`
+            }
+            if (card instanceof CityCard) {
+
+                cardInfo.innerHTML =
+                    cardInfo.innerHTML + `<h2>Price: ${card.price} $</h2> ` +
+                    `<h2>Taxes: ${card.rent} </h2>` +
+                    `<h2>Towers: lv ${card.numberOfHouses}</h2>`
+
+            }
+
+            if(card instanceof ObtainableCard) {
+                let player = findCardOwner(game.players,card.id)
+                if(player) {
+                    cardInfo.innerHTML = cardInfo.innerHTML + `<h2>Owner: ${player.name}</h2> `
+                } else {
+                    cardInfo.innerHTML = cardInfo.innerHTML + `<h2>Owner: </h2>`
+                }
             }
         }
 

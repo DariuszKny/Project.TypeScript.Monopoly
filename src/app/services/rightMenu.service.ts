@@ -26,7 +26,8 @@ export module RightMenuService {
       // @ts-ignore
       image.src = images[`f${card}`];
       image.addEventListener('click', function () {
-        leftMenuService.showPlayerCard(leftMenuView, `f${card}`);
+        leftMenuService.showPlayerCard(game,leftMenuView, `f${card}`);
+
       });
       rightMenuView.container.appendChild(image);
     });
