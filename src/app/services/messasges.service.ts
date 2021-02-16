@@ -1,7 +1,8 @@
 import { Player } from '../models/player.model';
 import { ObtainableCard } from '../models/card.models/abstractCard.model';
-import { PASSING_START_SALARY } from '../constants/prices';
 import { CityCard } from '../models/card.models/cityCard.model';
+import { PASSING_START_SALARY } from '../constants/prices';
+import { PLAYER_IS_ATTACKED_STEPS, PLAYER_IS_CHASED_STEPS } from "../constants/gameConstants";
 
 export const logMessage = (message: string): void => {
   const messageContainer = document.querySelector<HTMLElement>(
@@ -88,15 +89,22 @@ export module Messages {
     return `${player.name} lost ${money}$`;
   };
 
-  export const playerMoved = (
+  export const playerWasChased = (
     player: Player,
-    amount: number,
   ): string => {
-    let direction: string = 'forward';
+    const numberOfFields = Math.abs(PLAYER_IS_CHASED_STEPS)
     let plural: string = '';
-    if (amount < 0) direction = 'backward';
-    if (Math.abs(amount) > 1) plural = 's';
-    return `${player.name} moved ${Math.abs(amount)} field${plural} ${direction}`;
+    if (numberOfFields> 1) plural = 's';
+    return `${player.name} was chased and moved ${numberOfFields} field${plural} forward`;
+  };
+
+  export const playerWasAttacked = (
+    player: Player,
+  ): string => {
+    const numberOfFields = Math.abs(PLAYER_IS_ATTACKED_STEPS)
+    let plural: string = '';
+    if (numberOfFields > 1) plural = 's';
+    return `${player.name} was attacked and moved ${numberOfFields} field${plural} backward`;
   };
 
   export const playerPassedStart = (player: Player): string => {
@@ -116,15 +124,5 @@ export module Messages {
     if (player.blockedTurns > 1) plural = 's';
     return `${player.name} is in Jail, has to wait ${player.blockedTurns} turn${plural}`;
   };
-
-
-  export const playerWentBankrupt = (player: Player): string => {
-    return `${player.name} has gone bankrupt`;
-  };
-
-  export const playerWonTheGame = (player: Player): string => {
-    return `${player.name} has won the game`;
-  };
-
 }
 
