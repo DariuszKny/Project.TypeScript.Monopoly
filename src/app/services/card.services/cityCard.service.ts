@@ -9,6 +9,14 @@ import {
 } from './sharedCard.service';
 import * as provinces from '../../constants/provinces';
 import { logMessage, Messages } from "../messasges.service";
+import {LeftMenuService} from "../leftMenu.service";
+import {LeftMenuView} from "../../views/leftMenu.view";
+import {RightMenuView} from "../../views/rightMenu.view";
+import {RightMenuService} from "../rightMenu.service";
+import showCards = RightMenuService.showCards;
+
+
+
 
 export const payRent = (game: GameModel): void => {
   const player = game.activePlayer;
@@ -24,13 +32,16 @@ export const payRent = (game: GameModel): void => {
   }
 };
 
-export const buyHouse = (game: GameModel): void => {
+export const buyHouse = (game: GameModel,leftMenuView: LeftMenuView, rightMenuView:RightMenuView): void => {
   const player = game.activePlayer;
   const currentCard = game.gameBoard[game.activePlayer.currentPosition].card;
   if(currentCard instanceof CityCard){
     const city = currentCard;
     player.giveMoney(city.priceOfHouses);
     city.numberOfHouses++;
+    LeftMenuService.showPreview(game, leftMenuView, currentCard.id);
+    LeftMenuService.showCardInfo(game, leftMenuView, currentCard.id)
+    showCards(player.id, rightMenuView,leftMenuView,game)
     logMessage(Messages.playerCanBuyHouse(player, city));
   }
 };

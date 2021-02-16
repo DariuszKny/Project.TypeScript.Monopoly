@@ -21,6 +21,12 @@ import { payArtifactTax } from './card.services/artifactCard.service';
 import { payHobbitTax } from './card.services/hobbitCard.service';
 import { logMessage, Messages } from "../services/messasges.service";
 import { GO_TO_JAIL_FIELD } from "../constants/gameConstants";
+import {LeftMenuService} from "./leftMenu.service";
+import showPreview = LeftMenuService.showPreview;
+import {LeftMenuView} from "../views/leftMenu.view";
+import showCardInfo = LeftMenuService.showCardInfo;
+import {RightMenuService} from "./rightMenu.service";
+import {RightMenuView} from "../views/rightMenu.view";
 
 export const canPlayerBuyCard = (game: GameModel): boolean => {
   const currentCard = game.gameBoard[game.activePlayer.currentPosition].card;
@@ -33,12 +39,15 @@ export const canPlayerBuyCard = (game: GameModel): boolean => {
   else return false;  
 }
 
-export const buyCard = (game: GameModel) => {
+export const buyCard = (game: GameModel, leftMenuView: LeftMenuView,rightMenuView: RightMenuView,) => {
   const currentCard = game.gameBoard[game.activePlayer.currentPosition].card;
   if(currentCard instanceof ObtainableCard){
     currentCard.isObtainable = false;
     game.activePlayer.giveMoney(currentCard.price);
     game.activePlayer.cards.push(currentCard.id);
+    showPreview(game, leftMenuView, currentCard.id);
+    showCardInfo(game, leftMenuView, currentCard.id)
+    RightMenuService.showCards(game.activePlayer.id,rightMenuView,leftMenuView,game)
     logMessage(Messages.playerBoughtCard(game.activePlayer, currentCard));
   }
 }

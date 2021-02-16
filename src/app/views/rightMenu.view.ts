@@ -4,5 +4,7 @@ export class RightMenuView {
     '.cards-container',
   )! as HTMLImageElement;
 
+  containerLabel = document.getElementById("cards")!
+
 
 }
