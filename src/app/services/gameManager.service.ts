@@ -21,6 +21,18 @@ import { payArtifactTax } from './card.services/artifactCard.service';
 import { payHobbitTax } from './card.services/hobbitCard.service';
 import { logMessage, Messages } from "../services/messasges.service";
 
+export const canPlayerBuyCard = (game: GameModel): boolean => {
+  const currentCard = game.gameBoard[game.activePlayer.currentPosition].card;
+  if(currentCard instanceof ObtainableCard){
+    if(currentCard.isObtainable && game.activePlayer.money > currentCard.price){
+      logMessage(Messages.playerCanBuyCard(game.activePlayer, currentCard));
+      return true;
+    }
+    else return false;
+  }
+  else return false;  
+}
+
 export const buyCard = (game: GameModel) => {
   const currentCard = game.gameBoard[game.activePlayer.currentPosition].card;
   if(currentCard instanceof ObtainableCard){
