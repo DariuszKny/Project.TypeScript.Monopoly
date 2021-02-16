@@ -6,7 +6,10 @@ import { START_SALARY } from '../constants/prices';
 import { playerPassedStart } from '../services/card.services/baseCard.service';
 import { movePawnOnBoard } from '../services/pawn.service';
 import {Hero} from "./hero.enum";
-import { logMessage, Messages } from "../services/messasges.service";
+import {logMessage, Messages,} from "../services/messasges.service";
+import {gameBoard} from "../services/gameBoard.service";
+import {ObtainableCard} from "./card.models/abstractCard.model";
+import playerBankrupt = Messages.playerBankrupt;
 
 export class Player {
   readonly _id: number;
@@ -145,8 +148,20 @@ export class Player {
   }
 
   giveMoney(amount: number) {
-    if (this._money > amount) this._money = this._money - amount;
-    else console.log("You don't have enough money");
+    if(this._money > amount){
+      this._money = this._money - amount;
+    } else {
+      this.money = 0;
+      this._cards.forEach(cardid => {
+        let card = gameBoard.find(field => {
+          return field.card.id==cardid
+        })
+        if(card && card.card instanceof ObtainableCard) card.card.isObtainable =true;
+        this._cards = []
+      })
+      logMessage(playerBankrupt(this.name))
+    }
+
   }
 
   moveNumberOfFields(numberOfFields: number) {

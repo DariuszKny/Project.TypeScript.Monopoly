@@ -3,8 +3,11 @@ import { Player } from '../models/player.model';
 import { LeftMenuView } from '../views/leftMenu.view';
 import { EndPageView } from '../views/endPage.view';
 import {doc} from "prettier";
+import {logMessage, Messages} from "./messasges.service";
 
 export module TimerService {
+  import timeEnded = Messages.timeEnded;
+  import playerWon = Messages.playerWon;
   export const startTimer = function (
     time: number,
     game: GameModel,
@@ -31,18 +34,20 @@ export module TimerService {
       }
     }, 1000);
   };
-
+  let endGameCounter = 5
   const endGameTime = function (players: Player[], endPageView: EndPageView) {
 
     let top = 0;
     let winner = [];
+
     for (let i = 0; i < players.length; i++) {
       if (players[i].money > top) {
         top = players[i].money;
         winner[0] = players[i];
       }
     };
-
+    logMessage(timeEnded(endGameCounter, winner[0]));
+    endGameCounter -= 1 ;
     endMessage(winner, endPageView);
   };
 
@@ -56,17 +61,24 @@ export module TimerService {
         winner[0] = players[i];
       }
     }
-      if (counter === 1) endMessage(winner, endPageView);
+      if (counter === 1) {
+        logMessage(playerWon(endGameCounter,winner[0]));
+        endGameCounter -= 1 ;
+        endMessage(winner, endPageView);
+      }
   };
 
   const endMessage = function(winner: Player[], endPageView: EndPageView): void {
-    const game = document.querySelector<HTMLElement>('.game-container')!.style.display = 'none';
-    const images = require('../../../images/ending/*.jpg');
 
-    let newParagraph= document.getElementById("end-p")!;
-    newParagraph.innerHTML = `${winner[0].name}` + `</br>` + `has defeated all enemies!`
-    endPageView.winnerMessage.style.display = 'flex';
-    endPageView.winnerMessage.style.backgroundImage = 'url(' +images[winner[0].hero] +')';
+    setTimeout(() => {
+      const game = document.querySelector<HTMLElement>('.game-container')!.style.display = 'none';
+      const images = require('../../../images/ending/*.jpg');
+
+      let newParagraph= document.getElementById("end-p")!;
+      newParagraph.innerHTML = `${winner[0].name}` + `</br>` + `has defeated all enemies!`
+      endPageView.winnerMessage.style.display = 'flex';
+      endPageView.winnerMessage.style.backgroundImage = 'url(' +images[winner[0].hero] +')';
+    },5000)
   };
 
   const showTime = function (
