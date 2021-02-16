@@ -8,6 +8,7 @@ import {
   payMoneyToCardOwner,
 } from './sharedCard.service';
 import * as provinces from '../../constants/provinces';
+import { logMessage, Messages } from "../messasges.service";
 
 export const payRent = (game: GameModel): void => {
   const player = game.activePlayer;
@@ -28,17 +29,13 @@ export const buyHouse = (game: GameModel): void => {
   const currentCard = game.gameBoard[game.activePlayer.currentPosition].card;
   if(currentCard instanceof CityCard){
     const city = currentCard;
-  if (
-    playerOwnsAllCitiesInProvince(player, city) &&
-    city.numberOfHouses < 5
-  ) {
-    player.takeMoney(city.priceOfHouses);
+    player.giveMoney(city.priceOfHouses);
     city.numberOfHouses++;
+    logMessage(Messages.playerCanBuyHouse(player, city));
   }
-}
 };
 
-const playerOwnsAllCitiesInProvince = (
+export const playerOwnsAllCitiesInProvince = (
   player: Player,
   city: CityCard,
 ): boolean => {

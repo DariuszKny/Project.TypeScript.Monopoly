@@ -13,11 +13,13 @@ import { PlayerService } from '../services/player.service';
 import { playerMove } from '../services/gameBoard.service';
 import { Disabler } from '../services/disabler.service';
 import { SettingsController } from './settings.controller';
-import { buyCard, canPlayerBuyCard, obtainableCardActions, nonobtainableCardActions } from "../services/gameManager.service";
+import { buyCard, canPlayerBuyCard, canPlayerBuyHouse, cardActions} from "../services/gameManager.service";
 import { ObtainableCard } from "../models/card.models/abstractCard.model";
 import { logMessage, Messages } from "../services/messasges.service";
 import { isPlayerInJail } from "../services/card.services/baseCard.service";
 import { EndPageView } from '../views/endPage.view';
+import { CityCard } from '../models/card.models/cityCard.model';
+import { buyHouse } from '../services/card.services/cityCard.service';
 
 export module GameController {
   import disableEnable = Disabler.disableEnable;
@@ -71,30 +73,28 @@ export module GameController {
     const currentCard = game.gameBoard[game.activePlayer.currentPosition].card; 
     console.log(game.activePlayer.currentPosition);
     console.log(currentCard.id);
-      if(canPlayerBuyCard(game)){
-        console.log("jeeestem karta do kupienia");
+      if(currentCard instanceof ObtainableCard && canPlayerBuyCard(game)){
+        logMessage(Messages.playerCanBuyCard(game.activePlayer, currentCard));
+        disableEnable([], [mainBoardView.buttonBuy]);
+      }
+      else if(currentCard instanceof CityCard && canPlayerBuyHouse(game)){
+        logMessage(Messages.playerCanBuyHouse(game.activePlayer, currentCard));
         disableEnable([], [mainBoardView.buttonBuy]);
       }
       else {
-        console.log("możesz kupić:false");
         disableEnable([mainBoardView.buttonBuy],[]);
-        obtainableCardActions(game);
-        nonobtainableCardActions(game);
+        cardActions(game);
       }
- 
     if (!game.activePlayer.canThrowDices) disableEnable([mainBoardView.buttonRoll],[mainBoardView.buttonNextPlayer]);
     rightMenuService.updatePlayersPanels(rightMenuView,game);
     });
 
   mainBoardView.buttonBuy.addEventListener('click', function() {
-    buyCard(game);
+    if(canPlayerBuyCard(game)) buyCard(game);
+    else if (canPlayerBuyHouse(game)) buyHouse(game);
     rightMenuService.updatePlayersPanels(rightMenuView,game);
     disableEnable([mainBoardView.buttonBuy],[])
   })
-
-
-
-
 
   gameOptionView.buttonPlay?.addEventListener('click', function () {
     navigationPages.settingsPage.style.display = 'none';

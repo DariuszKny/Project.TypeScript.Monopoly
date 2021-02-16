@@ -1,6 +1,7 @@
 import { Player } from '../models/player.model';
 import { ObtainableCard } from '../models/card.models/abstractCard.model';
 import { PASSING_START_SALARY } from '../constants/prices';
+import { CityCard } from '../models/card.models/cityCard.model';
 
 export const logMessage = (message: string): void => {
   const messageContainer = document.querySelector<HTMLElement>(
@@ -38,6 +39,25 @@ export module Messages {
     card: ObtainableCard,
   ): string => {
     return `${player.name} bought ${card.name}`;
+  };
+
+  export const playerCanBuyHouse = (
+    player: Player,
+    card: CityCard,
+  ): string => {
+    let buildingType = "house";
+    if(card.numberOfHouses === 4) buildingType = "hotel";
+    return `${player.name} can buy a house for ${card.priceOfHouses}$`;
+  };
+
+  export const playerBoughtHouse = (
+    player: Player,
+    card: CityCard,
+  ): string => {
+    const number = ["first", "second", "third", "fourth"];
+    let whichHouse = number[card.numberOfHouses-1] + "house";
+    if(card.numberOfHouses === 5) whichHouse = "hotel";
+    return `${player.name} bought a ${whichHouse} here`;
   };
 
   export const playerPaidMoneyToOwner = (
