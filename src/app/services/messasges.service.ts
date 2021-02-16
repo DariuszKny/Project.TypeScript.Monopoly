@@ -38,7 +38,7 @@ export module Messages {
     player: Player,
     card: ObtainableCard,
   ): string => {
-    return `${player.name} bought ${card.name}`;
+    return `${player.name} bought ${card.name} card`;
   };
 
   export const playerCanBuyHouse = (
