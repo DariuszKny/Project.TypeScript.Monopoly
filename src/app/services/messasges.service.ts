@@ -26,6 +26,13 @@ export module Messages {
     return `${player.name} rolled a ${firstDiceResult} and a ${secondDiceResult}`;
   };
 
+  export const playerCanBuyCard = (
+    player: Player,
+    card: ObtainableCard,
+  ): string => {
+    return `${player.name} can buy this card for ${card.price}$`;
+  };
+
   export const playerBoughtCard = (
     player: Player,
     card: ObtainableCard,
@@ -66,10 +73,10 @@ export module Messages {
     amount: number,
   ): string => {
     let direction: string = 'forward';
+    let plural: string = '';
     if (amount < 0) direction = 'backward';
-    return `${player.name} moved ${Math.abs(
-      amount,
-    )} fields ${direction}`;
+    if (Math.abs(amount) > 1) plural = 's';
+    return `${player.name} moved ${Math.abs(amount)} field${plural} ${direction}`;
   };
 
   export const playerPassedStart = (player: Player): string => {
@@ -77,12 +84,17 @@ export module Messages {
   };
 
   export const playerWentToJail = (player: Player): string => {
-    return `${player.name} went to Jail and lost 2 turns`;
+    return `${player.name} went to Jail and lose 2 turns`;
   };
 
+  export const playerGotOutOfJail = (player: Player): string => {
+    return `${player.name} got out of Jail`;
+  }
 
   export const playerInJail = (player: Player): string => {
-    return `${player.name} is in Jail, has to wait ${player.blockedTurns}`;
+    let plural: string = '';
+    if (player.blockedTurns > 1) plural = 's';
+    return `${player.name} is in Jail, has to wait ${player.blockedTurns} turn${plural}`;
   };
 
 
@@ -93,4 +105,6 @@ export module Messages {
   export const playerWonTheGame = (player: Player): string => {
     return `${player.name} has won the game`;
   };
+
 }
+

@@ -25,3 +25,16 @@ export const goToJail = (game: GameModel): void => {
   player.moveToField(JAIL_FIELD);
   logMessage(Messages.playerWentToJail(player));
 };
+
+export const isPlayerInJail = (game: GameModel): void => {
+  if(game.activePlayer.isJailed) {
+    if(game.activePlayer.blockedTurns === 0) {
+      game.activePlayer.isJailed = false;
+      logMessage(Messages.playerGotOutOfJail(game.activePlayer));
+    }
+    if(game.activePlayer.blockedTurns > 0) {
+    logMessage(Messages.playerInJail(game.activePlayer));
+    game.activePlayer.blockedTurns--;
+  }
+}
+};
