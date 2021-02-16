@@ -50,19 +50,20 @@ export module Messages {
     player: Player,
     card: CityCard,
   ): string => {
-    let buildingType = "house";
-    if(card.numberOfHouses === 4) buildingType = "hotel";
-    return `${player.name} can buy a house for ${card.priceOfHouses}$`;
+    if(card.numberOfHouses === 0) return `${player.name} can build a tower for ${card.priceOfHouses}$`
+    else return `${player.name} can upgrade the tower for ${card.priceOfHouses}$`
   };
 
   export const playerBoughtHouse = (
     player: Player,
     card: CityCard,
   ): string => {
-    const number = ["first", "second", "third", "fourth"];
-    let whichHouse = number[card.numberOfHouses-1] + "house";
-    if(card.numberOfHouses === 5) whichHouse = "hotel";
-    return `${player.name} bought a ${whichHouse} here`;
+    if(card.numberOfHouses === 1) return `${player.name} built a tower here`;
+    else {
+      const number = ["first", "second", "third", "fourth", "fifth"];
+      let whichLevel = number[card.numberOfHouses-1];
+      return `${player.name} upgraded the tower to ${whichLevel} level`;
+    }
   };
 
   export const playerPaidMoneyToOwner = (
