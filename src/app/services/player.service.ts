@@ -2,8 +2,10 @@ import {Player} from '../models/player.model';
 import {GameModel} from '../models/game.model';
 import {RightMenuView} from '../views/rightMenu.view';
 import {Hero} from '../models/hero.enum';
+import {logMessage, Messages} from "./messasges.service";
 
 export module PlayerService {
+    import playerLost = Messages.playerLost;
     export let createPlayers = function (
         settings: {
             players: {
@@ -41,6 +43,10 @@ export module PlayerService {
             game.activePlayer = game.players[currentPlayer.id + 1];
         }
         game.activePlayer.numberOfDoubles = 0;
+        if(game.activePlayer.money===0) {
+            logMessage(playerLost(game.activePlayer))
+            changeActivePlayer(game,rightMenuView)
+        }
         showActivePlayer(rightMenuView, game);
     };
 
