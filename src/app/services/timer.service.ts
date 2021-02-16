@@ -2,6 +2,7 @@ import { GameModel } from '../models/game.model';
 import { Player } from '../models/player.model';
 import { LeftMenuView } from '../views/leftMenu.view';
 import { EndPageView } from '../views/endPage.view';
+import {doc} from "prettier";
 
 export module TimerService {
   export const startTimer = function (
@@ -11,8 +12,6 @@ export module TimerService {
     endPageView: EndPageView,
   ) {
     leftMenuView.time.innerHTML = `${time}`;
-    console.log('TIMER STARTED');
-    console.log(time);
     let timer = setInterval(function () {
       if (time != 0) {
         time = time - 1;
@@ -64,9 +63,8 @@ export module TimerService {
     const game = document.querySelector<HTMLElement>('.game-container')!.style.display = 'none';
     const images = require('../../../images/ending/*.jpg');
 
-    const newParagraph = document.createElement('p');
-    newParagraph.innerHTML = `${winner[0].name}<br>has defeated all enemies!`
-    endPageView.winnerMessage.appendChild(newParagraph);
+    let newParagraph= document.getElementById("end-p")!;
+    newParagraph.innerHTML = `${winner[0].name}` + `</br>` + `has defeated all enemies!`
     endPageView.winnerMessage.style.display = 'flex';
     endPageView.winnerMessage.style.backgroundImage = 'url(' +images[winner[0].hero] +')';
   };
