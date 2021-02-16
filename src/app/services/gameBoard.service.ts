@@ -26,12 +26,15 @@ import { PlayerService } from './player.service';
 import { GameModel } from '../models/game.model';
 import { Messages, logMessage } from './messasges.service';
 import { playerGetsMoney } from './card.services/sharedCard.service';
+import {RightMenuService} from "./rightMenu.service";
+import {LeftMenuService} from "./leftMenu.service";
+import {LeftMenuView} from "../views/leftMenu.view";
 
 export type gameField = { card: Card; action?: unknown };
 
-export const playerMove = function (game: GameModel) {
+export const playerMove = function (game: GameModel, leftMenuView: LeftMenuView) {
   if (game.activePlayer.numberOfDoubles <= 2)
-    throwDiceAndMovePlayer(game);
+    throwDiceAndMovePlayer(game,leftMenuView);
   if (game.activePlayer.numberOfDoubles === 3)
     goToJail(game);
 
@@ -49,12 +52,14 @@ export const playerMove = function (game: GameModel) {
   // buyCard(currentPlayer.playerPosition);   TODO
 };
 
-export const throwDiceAndMovePlayer = function (game: GameModel) {
+export const throwDiceAndMovePlayer = function (game: GameModel, leftMenuView: LeftMenuView) {
   const dice = throwDice(game.activePlayer);
   const sumOfDices = dice[2];
   doubleCheck(dice, game.activePlayer);
   showThrowResults(dice, game.activePlayer);
   game.activePlayer.moveNumberOfFields(sumOfDices);
+  LeftMenuService.showPreview(game,leftMenuView,game.activePlayer.currentPosition)
+  LeftMenuService.showCardInfo(game,leftMenuView,game.activePlayer.currentPosition)
 };
 
 const images = require('../../../images/dice/*.png');
@@ -106,7 +111,7 @@ export const gameBoard: gameField[] = [
     action: [payRent, buyHouse],
   },
   {
-    card: new HobbitCard(5, 'Frodo', 'Hobbit', 250),
+    card: new HobbitCard(5, 'Frodo', 'For Every Hobbit You pay 10% tax less', 250),
     action: payHobbitTax,
   },
   {
@@ -182,7 +187,7 @@ export const gameBoard: gameField[] = [
     action: earnAndSendSomeoneToJail,
   },
   {
-    card: new HobbitCard(15, 'Sam', 'Hobbit', 250),
+    card: new HobbitCard(15, 'Sam', 'For Every Hobbit You pay 10% tax less', 250),
     action: payHobbitTax,
   },
   {
@@ -265,7 +270,7 @@ export const gameBoard: gameField[] = [
     action: [payRent, buyHouse],
   },
   {
-    card: new HobbitCard(25, 'Merry', 'Hobbit', 250),
+    card: new HobbitCard(25, 'Merry', 'For Every Hobbit You pay 10% tax less', 250),
     action: payHobbitTax,
   },
   {
@@ -351,7 +356,7 @@ export const gameBoard: gameField[] = [
     action: [payRent, buyHouse],
   },
   {
-    card: new HobbitCard(35, 'Pippin', 'Hobbit', 250),
+    card: new HobbitCard(35, 'Pippin', 'For Every Hobbit You pay 10% tax less', 250),
     action: payHobbitTax,
   },
   {

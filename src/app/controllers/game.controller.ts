@@ -39,7 +39,7 @@ export module GameController {
 
   leftMenuView.fields?.forEach((field) => {
     field.addEventListener('click', function () {
-      leftMenuService.showPreview(leftMenuView, field);
+      leftMenuService.showPreview(game,leftMenuView, parseInt(field.id.slice(1)));
     });
   });
 
@@ -67,7 +67,7 @@ export module GameController {
   );
 
   mainBoardView.buttonRoll.addEventListener('click', function () {
-    playerMove(game);
+    playerMove(game, leftMenuView);
     const currentCard = game.gameBoard[game.activePlayer.currentPosition].card; 
     console.log(game.activePlayer.currentPosition);
     console.log(currentCard.id);
